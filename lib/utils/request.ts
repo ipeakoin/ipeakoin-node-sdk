@@ -1,13 +1,13 @@
 import request from 'superagent';
+import { Qbit } from '../dto';
 /**
  * post 请求
- * @param env 环境变量
  * @param url
  * @param params
  * @param headers
  * @returns
  */
-export const postRequest = async (url: string, params: Record<string, any>, headers: Record<string, any> = {}): Promise<any> => {
+export const postRequest = async (url: string, params: Record<string, any>, headers: Record<string, any> = {}): Promise<Qbit.IOutput> => {
   try {
     const result = await request
       .post(url)
@@ -20,7 +20,70 @@ export const postRequest = async (url: string, params: Record<string, any>, head
       },
     };
   } catch (error) {
-    throw error;
+    const err = error?.response?.body;
+    if (!err) throw error;
+    return {
+      status: error?.status || 400,
+      err: err,
+    };
+  }
+};
+
+/**
+ * put 请求
+ * @param url
+ * @param params
+ * @param headers
+ * @returns
+ */
+export const putRequest = async (url: string, params: Record<string, any>, headers: Record<string, any> = {}): Promise<Qbit.IOutput> => {
+  try {
+    const result = await request
+      .put(url)
+      .send(params)
+      .set(headers);
+    return {
+      status: result.status,
+      data: {
+        ...result.body,
+      },
+    };
+  } catch (error) {
+    const err = error?.response?.body;
+    if (!err) throw error;
+    return {
+      status: error?.status || 400,
+      err: err,
+    };
+  }
+};
+
+/**
+ * delete 请求
+ * @param url
+ * @param params
+ * @param headers
+ * @returns
+ */
+export const deleteRequest = async (url: string, params: Record<string, any>, headers: Record<string, any> = {}): Promise<Qbit.IOutput> => {
+  try {
+    const result = await request
+      .delete(url)
+      .send(params)
+      .set(headers);
+    return {
+      status: result.status,
+      data: {
+        ...result.body,
+      },
+    };
+  } catch (error) {
+    const err = error?.response?.body;
+    if (!err) throw error;
+    return {
+      status: error?.status || 400,
+      err: err,
+    };
   }
 };
 
@@ -31,7 +94,7 @@ export const postRequest = async (url: string, params: Record<string, any>, head
  * @param headers
  * @returns
  */
-export const getRequest = async (url: string, query: Record<string, any>, headers: Record<string, any> = {}): Promise<any> => {
+export const getRequest = async (url: string, query: Record<string, any>, headers: Record<string, any> = {}): Promise<Qbit.IOutput> => {
   try {
     const result = await request
       .get(url)
@@ -44,6 +107,11 @@ export const getRequest = async (url: string, query: Record<string, any>, header
       },
     };
   } catch (error) {
-    throw error;
+    const err = error?.response?.body;
+    if (!err) throw error;
+    return {
+      status: error?.status || 400,
+      err: err,
+    };
   }
 };

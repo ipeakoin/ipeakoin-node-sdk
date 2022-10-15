@@ -1,7 +1,7 @@
-import { QbitManage } from './dto';
+import { Qbit } from './dto';
 import { getRequest } from './utils/request';
 
-export class Balance {
+export class BalanceService {
   private baseUrl: string;
 
   constructor(baseUrl: string) {
@@ -10,7 +10,7 @@ export class Balance {
   /**
    * 获取Balance列表
    */
-  public async balances(params: QbitManage.Balance.IBalancesInput, token: string): Promise<QbitManage.Balance.IBalancesOutput> {
+  public async balances(params: Qbit.Balance.IBalancesInput, token: string): Promise<Qbit.Balance.IBalancesOutput> {
     const url = `${this.baseUrl}/open-api/v1/balances`;
     return await getRequest(url, params, {
       'x-qbit-access-token': token,

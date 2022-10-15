@@ -4,24 +4,25 @@ import { Readable } from 'stream';
  * status http 返回code 码
  * data 返回实体数据
  */
-export namespace QbitManage {
+export namespace Qbit {
   /** 统一返回 */
   export interface IOutput {
     status: number;
     data?: any;
+    err?: { code: number; message: string };
   }
   /** 获取code */
   export interface IGetCodeOutput extends IOutput {
-    data: {
+    data?: {
       timestamp: number;
       state: string;
       code: string;
     };
   }
   /** 获取access token */
-  export interface IGetAccessTokenOutput {
+  export interface IGetAccessTokenOutput extends IOutput {
     status: number;
-    data: {
+    data?: {
       accessToken: string;
       refreshToken: string;
       expiresIn: number;
@@ -29,9 +30,9 @@ export namespace QbitManage {
     };
   }
   /** 刷新access token  */
-  export interface IRefreshAccessTokenOutput {
+  export interface IRefreshAccessTokenOutput extends IOutput {
     status: number;
-    data: {
+    data?: {
       accessToken: string;
       expiresIn: number;
       timestamp: number;
@@ -45,7 +46,7 @@ export namespace QbitManage {
       legalPerson: string; //	法人名称
     }
     export interface IRegisterOutput extends IOutput {
-      data: {
+      data?: {
         accountId: string; //	账户id
         userId: string; //	user id
         domain: string; //	domain
@@ -57,7 +58,7 @@ export namespace QbitManage {
       page?: number; //	默认 0
     }
     export interface IAccountsOutput extends IOutput {
-      data: {
+      data?: {
         data: QbitModel.AccountModel[];
         total: number;
       };
@@ -71,7 +72,7 @@ export namespace QbitManage {
       accountId: string; //	客户 Id
     }
     export interface IUsersOutput extends IOutput {
-      data: {
+      data?: {
         data: QbitModel.UserModel[];
         total: number;
       };
@@ -86,8 +87,8 @@ export namespace QbitManage {
       walletType?: string; //	余额类型
       subAccount?: string; //	子账户id
     }
-    export interface IBalancesOutput {
-      data: {
+    export interface IBalancesOutput extends IOutput {
+      data?: {
         data: QbitModel.BalanceModel[];
         total: number;
       };
@@ -117,8 +118,8 @@ export namespace QbitManage {
       useType: string; //	使用类别
       email?: string; //	持卡人邮箱
     }
-    export interface ICreateCardsOutput {
-      data: boolean;
+    export interface ICreateCardsOutput extends IOutput {
+      data?: boolean;
     }
   }
 }
@@ -328,8 +329,8 @@ export namespace QbitModel {
       isRepresentative: boolean; //	是企业法人
       country: string; //	企业法人国籍
       idType: EnumManage.IdTypeEnum; //	企业法人证件类型
-      idFront: QbitManage.IFile; //	身份证正面或护照照片
-      idBack?: QbitManage.IFile; //	身份证反面(证件类型为身份证时必传)
+      idFront: Qbit.IFile; //	身份证正面或护照照片
+      idBack?: Qbit.IFile; //	身份证反面(证件类型为身份证时必传)
       sharePercent?: number; //	受益人持股比例
       isUBO?: boolean; //	是否为受益人
       firstName?: string; //	名

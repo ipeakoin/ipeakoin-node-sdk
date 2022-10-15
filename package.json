@@ -1,7 +1,7 @@
 {
   "name": "qbit-node-sdk",
-  "version": "0.0.1",
-  "description": "qbit api",
+  "version": "0.0.2",
+  "description": "qbit bass api 接口支持",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -17,7 +17,7 @@
   "keywords": [
     "qbit"
   ],
-  "author": "klover",
+  "author": "Qbit Team",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/klover2/qbit-node-sdk/issues"

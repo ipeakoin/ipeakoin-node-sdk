@@ -1,7 +1,7 @@
-import { QbitManage } from './dto';
+import { Qbit } from './dto';
 import { postRequest } from './utils/request';
 
-export class Card {
+export class CardService {
   private baseUrl: string;
 
   constructor(baseUrl: string) {
@@ -11,7 +11,7 @@ export class Card {
   /**
    * 创建量子卡
    */
-  public async createCards(params: QbitManage.Card.ICreateCardsInput, token: string): Promise<QbitManage.Card.ICreateCardsOutput> {
+  public async createCards(params: Qbit.Card.ICreateCardsInput, token: string): Promise<Qbit.Card.ICreateCardsOutput> {
     const url = `${this.baseUrl}/open-api/v1/cards`;
     return await postRequest(url, params, {
       'x-qbit-access-token': token,
