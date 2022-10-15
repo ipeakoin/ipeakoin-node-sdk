@@ -15,7 +15,9 @@
     "url": "git+https://github.com/klover2/qbit-node-sdk.git"
   },
   "keywords": [
-    "qbit"
+    "qbit",
+    "全球账户",
+    "量子卡"
   ],
   "author": "Qbit Team",
   "license": "ISC",
