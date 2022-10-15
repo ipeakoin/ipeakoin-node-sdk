@@ -4,7 +4,7 @@ import { Readable } from 'stream';
  * status http 返回code 码
  * data 返回实体数据
  */
-export namespace Qbit {
+export namespace QbitManage {
   /** 统一返回 */
   export interface IOutput {
     status: number;
@@ -329,8 +329,8 @@ export namespace QbitModel {
       isRepresentative: boolean; //	是企业法人
       country: string; //	企业法人国籍
       idType: EnumManage.IdTypeEnum; //	企业法人证件类型
-      idFront: Qbit.IFile; //	身份证正面或护照照片
-      idBack?: Qbit.IFile; //	身份证反面(证件类型为身份证时必传)
+      idFront: QbitManage.IFile; //	身份证正面或护照照片
+      idBack?: QbitManage.IFile; //	身份证反面(证件类型为身份证时必传)
       sharePercent?: number; //	受益人持股比例
       isUBO?: boolean; //	是否为受益人
       firstName?: string; //	名

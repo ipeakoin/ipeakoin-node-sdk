@@ -1,4 +1,4 @@
-import { Qbit } from './dto';
+import { QbitManage } from './dto';
 import { getRequest } from './utils/request';
 
 export class UserService {
@@ -10,7 +10,7 @@ export class UserService {
   /**
    * 获取User列表
    */
-  public async users(params: Qbit.User.IUsersInput, token: string): Promise<Qbit.User.IUsersOutput> {
+  public async users(params: QbitManage.User.IUsersInput, token: string): Promise<QbitManage.User.IUsersOutput> {
     const url = `${this.baseUrl}/open-api/v1/users`;
     return await getRequest(url, params, {
       'x-qbit-access-token': token,

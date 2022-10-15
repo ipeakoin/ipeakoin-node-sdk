@@ -1,6 +1,6 @@
 import { AccountService } from './lib/account.service';
 import { BalanceService } from './lib/balance.service';
-import { Qbit } from './lib/dto';
+import { QbitManage } from './lib/dto';
 import { UserService } from './lib/user.service';
 import { deleteRequest, getRequest, postRequest, putRequest } from './lib/utils/request';
 import * as crypto from 'crypto';
@@ -25,7 +25,7 @@ class Qbit {
   /**
    * 获取code
    */
-  public async getCode(state?: string, redirectUri?: string): Promise<Qbit.IGetCodeOutput> {
+  public async getCode(state?: string, redirectUri?: string): Promise<QbitManage.IGetCodeOutput> {
     const url = `${this.baseUrl}/open-api/oauth/authorize`;
     return await getRequest(url, {
       clientId: this.clientId,
@@ -36,7 +36,7 @@ class Qbit {
   /**
    * 获取access token
    */
-  public async getAccessToken(code: string): Promise<Qbit.IGetAccessTokenOutput> {
+  public async getAccessToken(code: string): Promise<QbitManage.IGetAccessTokenOutput> {
     const url = `${this.baseUrl}/open-api/oauth/access-token`;
     return await postRequest(url, {
       clientId: this.clientId,
@@ -47,7 +47,7 @@ class Qbit {
   /**
    * 刷新access token
    */
-  public async refreshAccessToken(refreshToken: string): Promise<Qbit.IRefreshAccessTokenOutput> {
+  public async refreshAccessToken(refreshToken: string): Promise<QbitManage.IRefreshAccessTokenOutput> {
     const url = `${this.baseUrl}/open-api/oauth/refresh-token`;
     return await postRequest(url, {
       clientId: this.clientId,
@@ -89,7 +89,7 @@ class Qbit {
    * @param params
    * @returns
    */
-  public async postRequest(url: string, params: Record<string, any>): Promise<Qbit.IOutput> {
+  public async postRequest(url: string, params: Record<string, any>): Promise<QbitManage.IOutput> {
     return await postRequest(url, params, {
       'x-qbit-access-token': this.accessToken,
       'Content-Type': 'application/json',
@@ -101,7 +101,7 @@ class Qbit {
    * @param params
    * @returns
    */
-  public async putRequest(url: string, params: Record<string, any>): Promise<Qbit.IOutput> {
+  public async putRequest(url: string, params: Record<string, any>): Promise<QbitManage.IOutput> {
     return await putRequest(url, params, {
       'x-qbit-access-token': this.accessToken,
       'Content-Type': 'application/json',
@@ -113,7 +113,7 @@ class Qbit {
    * @param params
    * @returns
    */
-  public async deleteRequest(url: string, params: Record<string, any>): Promise<Qbit.IOutput> {
+  public async deleteRequest(url: string, params: Record<string, any>): Promise<QbitManage.IOutput> {
     return await deleteRequest(url, params, {
       'x-qbit-access-token': this.accessToken,
       'Content-Type': 'application/json',
@@ -125,7 +125,7 @@ class Qbit {
    * @param params
    * @returns
    */
-  public async get(url: string, query: Record<string, any>): Promise<Qbit.IOutput> {
+  public async get(url: string, query: Record<string, any>): Promise<QbitManage.IOutput> {
     return await getRequest(url, query, {
       'x-qbit-access-token': this.accessToken,
       'Content-Type': 'application/json',
@@ -161,4 +161,4 @@ class Qbit {
   //#endregion 签名
 }
 
-export = Qbit;
+export = QbitManage;

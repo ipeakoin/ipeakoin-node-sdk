@@ -1,5 +1,5 @@
 import request from 'superagent';
-import { Qbit } from '../dto';
+import { QbitManage } from '../dto';
 /**
  * post 请求
  * @param url
@@ -7,7 +7,7 @@ import { Qbit } from '../dto';
  * @param headers
  * @returns
  */
-export const postRequest = async (url: string, params: Record<string, any>, headers: Record<string, any> = {}): Promise<Qbit.IOutput> => {
+export const postRequest = async (url: string, params: Record<string, any>, headers: Record<string, any> = {}): Promise<QbitManage.IOutput> => {
   try {
     const result = await request
       .post(url)
@@ -36,7 +36,7 @@ export const postRequest = async (url: string, params: Record<string, any>, head
  * @param headers
  * @returns
  */
-export const putRequest = async (url: string, params: Record<string, any>, headers: Record<string, any> = {}): Promise<Qbit.IOutput> => {
+export const putRequest = async (url: string, params: Record<string, any>, headers: Record<string, any> = {}): Promise<QbitManage.IOutput> => {
   try {
     const result = await request
       .put(url)
@@ -65,7 +65,7 @@ export const putRequest = async (url: string, params: Record<string, any>, heade
  * @param headers
  * @returns
  */
-export const deleteRequest = async (url: string, params: Record<string, any>, headers: Record<string, any> = {}): Promise<Qbit.IOutput> => {
+export const deleteRequest = async (url: string, params: Record<string, any>, headers: Record<string, any> = {}): Promise<QbitManage.IOutput> => {
   try {
     const result = await request
       .delete(url)
@@ -94,7 +94,7 @@ export const deleteRequest = async (url: string, params: Record<string, any>, he
  * @param headers
  * @returns
  */
-export const getRequest = async (url: string, query: Record<string, any>, headers: Record<string, any> = {}): Promise<Qbit.IOutput> => {
+export const getRequest = async (url: string, query: Record<string, any>, headers: Record<string, any> = {}): Promise<QbitManage.IOutput> => {
   try {
     const result = await request
       .get(url)
