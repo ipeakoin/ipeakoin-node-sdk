@@ -18,6 +18,7 @@ export const postRequest = async (url: string, params: Record<string, any>, head
       data: {
         ...result.body,
       },
+      err: null,
     };
   } catch (error) {
     const err = error?.response?.body;
@@ -25,6 +26,7 @@ export const postRequest = async (url: string, params: Record<string, any>, head
     return {
       status: error?.status || 400,
       err: err,
+      data: null,
     };
   }
 };
@@ -47,6 +49,7 @@ export const putRequest = async (url: string, params: Record<string, any>, heade
       data: {
         ...result.body,
       },
+      err: null,
     };
   } catch (error) {
     const err = error?.response?.body;
@@ -54,6 +57,7 @@ export const putRequest = async (url: string, params: Record<string, any>, heade
     return {
       status: error?.status || 400,
       err: err,
+      data: null,
     };
   }
 };
@@ -76,6 +80,7 @@ export const deleteRequest = async (url: string, params: Record<string, any>, he
       data: {
         ...result.body,
       },
+      err: null,
     };
   } catch (error) {
     const err = error?.response?.body;
@@ -83,6 +88,7 @@ export const deleteRequest = async (url: string, params: Record<string, any>, he
     return {
       status: error?.status || 400,
       err: err,
+      data: null,
     };
   }
 };
@@ -105,6 +111,7 @@ export const getRequest = async (url: string, query: Record<string, any>, header
       data: {
         ...result.body,
       },
+      err: null,
     };
   } catch (error) {
     const err = error?.response?.body;
@@ -112,6 +119,7 @@ export const getRequest = async (url: string, query: Record<string, any>, header
     return {
       status: error?.status || 400,
       err: err,
+      data: null,
     };
   }
 };

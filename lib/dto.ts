@@ -8,12 +8,12 @@ export namespace QbitManage {
   /** 统一返回 */
   export interface IOutput {
     status: number;
-    data?: any;
-    err?: { code: number; message: string };
+    data: any;
+    err: { code: number; message: string } | null;
   }
   /** 获取code */
   export interface IGetCodeOutput extends IOutput {
-    data?: {
+    data: {
       timestamp: number;
       state: string;
       code: string;
@@ -22,7 +22,7 @@ export namespace QbitManage {
   /** 获取access token */
   export interface IGetAccessTokenOutput extends IOutput {
     status: number;
-    data?: {
+    data: {
       accessToken: string;
       refreshToken: string;
       expiresIn: number;
@@ -32,7 +32,7 @@ export namespace QbitManage {
   /** 刷新access token  */
   export interface IRefreshAccessTokenOutput extends IOutput {
     status: number;
-    data?: {
+    data: {
       accessToken: string;
       expiresIn: number;
       timestamp: number;
@@ -46,7 +46,7 @@ export namespace QbitManage {
       legalPerson: string; //	法人名称
     }
     export interface IRegisterOutput extends IOutput {
-      data?: {
+      data: {
         accountId: string; //	账户id
         userId: string; //	user id
         domain: string; //	domain
@@ -58,7 +58,7 @@ export namespace QbitManage {
       page?: number; //	默认 0
     }
     export interface IAccountsOutput extends IOutput {
-      data?: {
+      data: {
         data: QbitModel.AccountModel[];
         total: number;
       };
@@ -72,7 +72,7 @@ export namespace QbitManage {
       accountId: string; //	客户 Id
     }
     export interface IUsersOutput extends IOutput {
-      data?: {
+      data: {
         data: QbitModel.UserModel[];
         total: number;
       };
@@ -88,7 +88,7 @@ export namespace QbitManage {
       subAccount?: string; //	子账户id
     }
     export interface IBalancesOutput extends IOutput {
-      data?: {
+      data: {
         data: QbitModel.BalanceModel[];
         total: number;
       };
@@ -119,7 +119,7 @@ export namespace QbitManage {
       email?: string; //	持卡人邮箱
     }
     export interface ICreateCardsOutput extends IOutput {
-      data?: boolean;
+      data: boolean;
     }
   }
 }
