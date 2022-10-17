@@ -125,7 +125,7 @@ class Qbit {
    * @param params
    * @returns
    */
-  public async get(url: string, query: Record<string, any>): Promise<QbitManage.IOutput> {
+  public async getRequest(url: string, query: Record<string, any>): Promise<QbitManage.IOutput> {
     return await getRequest(url, query, {
       'x-qbit-access-token': this.accessToken,
       'Content-Type': 'application/json',
@@ -154,7 +154,7 @@ class Qbit {
 
     const str = result.join('&');
 
-    const hmac = crypto.createHmac('sha256', '25d55ad283aa400af464c76d713c07ad');
+    const hmac = crypto.createHmac('sha256', _clientSecret);
     const sign = hmac.update(str).digest('hex');
     return sign;
   }
