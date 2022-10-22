@@ -8,7 +8,7 @@
 
 ## 项目状态
 
-当前版本`1.0.1`为正式版本。暂时支持了 auth 相关的接口，其他接口带后续完善，同时也提供了 Qbit Api 所需的 Post、put、delete、get 请求，方便使用者更好调用其他接口，具体使用请看下面代码示例。
+当前版本`1.1.0`为正式版本。暂时支持了 auth 相关的接口，其他接口带后续完善，同时也提供了 Qbit Api 所需的 Post、put、delete、get 请求，方便使用者更好调用其他接口，具体使用请看下面代码示例。
 
 `注意`：请商户的专业技术人员在使用时注意系统和软件的正确性和兼容性，以及带来的风险。
 
@@ -52,11 +52,8 @@ const qbit = new Qbit('qbit1f6efee44ceb8ca2', '8f70d42a1393802aebf567be27a47879'
 ### 获取 access token
 
 ```ts
-// 返回值 status 在 200 - 300 内表示请求正常
-const codeRes = await qbit.getCode();
-console.log(codeRes);
-const code = codeRes.data?.code || '';
-const accessTokenRes = await qbit.getAccessToken(code);
+const codeRes = await qbit.getCode('111');
+const accessTokenRes = await qbit.getAccessToken(codeRes.code);
 console.log(accessTokenRes);
 ```
 
@@ -70,6 +67,7 @@ console.log(res);
 ### 调用其他接口示例
 
 ```ts
+// 返回值 status 在 200 - 300 内表示请求正常
 const res = await qbit.config(accessToken).postRequest('https://api-global.qbitnetwork.com/open-api/v1/budget', {
   name: '测试',
   cost: 10,

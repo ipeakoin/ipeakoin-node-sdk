@@ -15,18 +15,16 @@ export const postRequest = async (url: string, params: Record<string, any>, head
       .set(headers);
     return {
       status: result.status,
-      data: {
-        ...result.body,
-      },
-      err: null,
+      reason: (result as any)?.res?.statusMessage || '',
+      content: result.body,
     };
   } catch (error) {
     const err = error?.response?.body;
     if (!err) throw error;
     return {
       status: error?.status || 400,
-      err: err,
-      data: null,
+      reason: error.response?.res?.statusMessage || '',
+      content: err,
     };
   }
 };
@@ -46,18 +44,16 @@ export const putRequest = async (url: string, params: Record<string, any>, heade
       .set(headers);
     return {
       status: result.status,
-      data: {
-        ...result.body,
-      },
-      err: null,
+      reason: (result as any)?.res?.statusMessage || '',
+      content: result.body,
     };
   } catch (error) {
     const err = error?.response?.body;
     if (!err) throw error;
     return {
       status: error?.status || 400,
-      err: err,
-      data: null,
+      reason: error.response?.res?.statusMessage || '',
+      content: err,
     };
   }
 };
@@ -77,18 +73,16 @@ export const deleteRequest = async (url: string, params: Record<string, any>, he
       .set(headers);
     return {
       status: result.status,
-      data: {
-        ...result.body,
-      },
-      err: null,
+      reason: (result as any)?.res?.statusMessage || '',
+      content: result.body,
     };
   } catch (error) {
     const err = error?.response?.body;
     if (!err) throw error;
     return {
       status: error?.status || 400,
-      err: err,
-      data: null,
+      reason: error.response?.res?.statusMessage || '',
+      content: err,
     };
   }
 };
@@ -108,18 +102,16 @@ export const getRequest = async (url: string, query: Record<string, any>, header
       .set(headers);
     return {
       status: result.status,
-      data: {
-        ...result.body,
-      },
-      err: null,
+      reason: (result as any)?.res?.statusMessage || '',
+      content: result.body,
     };
   } catch (error) {
     const err = error?.response?.body;
     if (!err) throw error;
     return {
       status: error?.status || 400,
-      err: err,
-      data: null,
+      reason: error.response?.res?.statusMessage || '',
+      content: err,
     };
   }
 };

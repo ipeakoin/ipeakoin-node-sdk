@@ -1,7 +1,4 @@
-import { AccountService } from './lib/account.service';
-import { BalanceService } from './lib/balance.service';
 import { QbitManage } from './lib/dto';
-import { UserService } from './lib/user.service';
 import { deleteRequest, getRequest, postRequest, putRequest } from './lib/utils/request';
 import * as crypto from 'crypto';
 
@@ -12,9 +9,6 @@ class Qbit {
   private accessToken = '';
 
   /** 其他模块接口 */
-  private static accountInstance: AccountService;
-  private static userInstance: UserService;
-  private static balanceInstance: BalanceService;
 
   constructor(clientId: string, clientSecret: string, baseUrl?: string) {
     this.clientId = clientId;
@@ -27,57 +21,42 @@ class Qbit {
    */
   public async getCode(state?: string, redirectUri?: string): Promise<QbitManage.IGetCodeOutput> {
     const url = `${this.baseUrl}/open-api/oauth/authorize`;
-    return await getRequest(url, {
+    const res = await getRequest(url, {
       clientId: this.clientId,
       state,
       redirectUri,
     });
+    const status = res?.status;
+    if (status >= 200 && status < 300) {
+      return (res.content as unknown) as QbitManage.IGetCodeOutput;
+    } else {
+      throw new Error(res?.content?.message);
+    }
   }
   /**
    * 获取access token
    */
   public async getAccessToken(code: string): Promise<QbitManage.IGetAccessTokenOutput> {
     const url = `${this.baseUrl}/open-api/oauth/access-token`;
-    return await postRequest(url, {
+    const res = await postRequest(url, {
       clientId: this.clientId,
       clientSecret: this.clientSecret,
       code: code,
     });
+    return (res.content as unknown) as QbitManage.IGetAccessTokenOutput;
   }
   /**
    * 刷新access token
    */
   public async refreshAccessToken(refreshToken: string): Promise<QbitManage.IRefreshAccessTokenOutput> {
     const url = `${this.baseUrl}/open-api/oauth/refresh-token`;
-    return await postRequest(url, {
+    const res = await postRequest(url, {
       clientId: this.clientId,
       refreshToken,
     });
+    return (res.content as unknown) as QbitManage.IRefreshAccessTokenOutput;
   }
-  /**
-   * 获取Account 模块接口
-   */
-  public get account() {
-    if (Qbit.accountInstance) return Qbit.accountInstance;
-    Qbit.accountInstance = new AccountService(this.baseUrl);
-    return Qbit.accountInstance;
-  }
-  /**
-   * 获取User 模块接口
-   */
-  public get user() {
-    if (Qbit.userInstance) return Qbit.userInstance;
-    Qbit.userInstance = new UserService(this.baseUrl);
-    return Qbit.userInstance;
-  }
-  /**
-   * 获取Balance 模块接口
-   */
-  public get balance() {
-    if (Qbit.balanceInstance) return Qbit.balanceInstance;
-    Qbit.balanceInstance = new BalanceService(this.baseUrl);
-    return Qbit.balanceInstance;
-  }
+
   //#region 请求
   public config(accessToken: string) {
     this.accessToken = accessToken;
@@ -161,4 +140,4 @@ class Qbit {
   //#endregion 签名
 }
 
-export = QbitManage;
+export = Qbit;
