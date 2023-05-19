@@ -1,117 +1,63 @@
-import request from 'superagent';
-import { QbitManage } from '../dto';
+import superagent from 'superagent';
+import { ClientManage } from '../dto';
+/**
+ * patch 请求
+ */
+export const patchRequest = async (url: string, params: Record<string, any>, headers: Record<string, any> = {}): Promise<ClientManage.IOutput> => {
+  const req = superagent.patch(url).send(params);
+  return Request(req, headers);
+};
+
 /**
  * post 请求
- * @param url
- * @param params
- * @param headers
- * @returns
  */
-export const postRequest = async (url: string, params: Record<string, any>, headers: Record<string, any> = {}): Promise<QbitManage.IOutput> => {
-  try {
-    const result = await request
-      .post(url)
-      .send(params)
-      .set(headers);
-    return {
-      status: result.status,
-      reason: (result as any)?.res?.statusMessage || '',
-      content: result.body,
-    };
-  } catch (error) {
-    const err = error?.response?.body;
-    if (!err) throw error;
-    return {
-      status: error?.status || 400,
-      reason: error.response?.res?.statusMessage || '',
-      content: err,
-    };
-  }
+export const postRequest = async (url: string, params: Record<string, any>, headers: Record<string, any> = {}): Promise<ClientManage.IOutput> => {
+  const req = superagent.post(url).send(params);
+  return Request(req, headers);
 };
 
 /**
  * put 请求
- * @param url
- * @param params
- * @param headers
- * @returns
  */
-export const putRequest = async (url: string, params: Record<string, any>, headers: Record<string, any> = {}): Promise<QbitManage.IOutput> => {
-  try {
-    const result = await request
-      .put(url)
-      .send(params)
-      .set(headers);
-    return {
-      status: result.status,
-      reason: (result as any)?.res?.statusMessage || '',
-      content: result.body,
-    };
-  } catch (error) {
-    const err = error?.response?.body;
-    if (!err) throw error;
-    return {
-      status: error?.status || 400,
-      reason: error.response?.res?.statusMessage || '',
-      content: err,
-    };
-  }
+export const putRequest = async (url: string, params: Record<string, any>, headers: Record<string, any> = {}): Promise<ClientManage.IOutput> => {
+  const req = superagent.put(url).send(params);
+  return Request(req, headers);
 };
 
 /**
  * delete 请求
- * @param url
- * @param params
- * @param headers
- * @returns
  */
-export const deleteRequest = async (url: string, params: Record<string, any>, headers: Record<string, any> = {}): Promise<QbitManage.IOutput> => {
-  try {
-    const result = await request
-      .delete(url)
-      .send(params)
-      .set(headers);
-    return {
-      status: result.status,
-      reason: (result as any)?.res?.statusMessage || '',
-      content: result.body,
-    };
-  } catch (error) {
-    const err = error?.response?.body;
-    if (!err) throw error;
-    return {
-      status: error?.status || 400,
-      reason: error.response?.res?.statusMessage || '',
-      content: err,
-    };
-  }
+export const deleteRequest = async (url: string, params: Record<string, any>, headers: Record<string, any> = {}): Promise<ClientManage.IOutput> => {
+  const req = superagent.delete(url).send(params);
+  return Request(req, headers);
 };
 
 /**
  * get 请求
- * @param url
- * @param params
- * @param headers
- * @returns
  */
-export const getRequest = async (url: string, query: Record<string, any>, headers: Record<string, any> = {}): Promise<QbitManage.IOutput> => {
+export const getRequest = async (url: string, query: Record<string, any>, headers: Record<string, any> = {}): Promise<ClientManage.IOutput> => {
+  const req = superagent.get(url).query(query);
+  return Request(req, headers);
+};
+
+/**
+ * 请求
+ */
+export const Request = async (req: superagent.SuperAgentRequest, headers: Record<string, any> = {}): Promise<ClientManage.IOutput> => {
   try {
-    const result = await request
-      .get(url)
-      .query(query)
-      .set(headers);
+    const result: any = await req.set(headers);
+
     return {
       status: result.status,
-      reason: (result as any)?.res?.statusMessage || '',
       content: result.body,
     };
   } catch (error) {
-    const err = error?.response?.body;
-    if (!err) throw error;
+    const err = JSON.parse(JSON.stringify(error));
     return {
-      status: error?.status || 400,
-      reason: error.response?.res?.statusMessage || '',
-      content: err,
+      status: err.status as number,
+      errRaw: err,
+      error: err?.response?.text,
+      content: null,
     };
   }
 };

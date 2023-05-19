@@ -1,14 +1,17 @@
-import { QbitManage } from './lib/dto';
+import { ClientManage } from './lib/dto';
+import { encryptHmacSHA256 } from './lib/utils/crypto';
 import { deleteRequest, getRequest, postRequest, putRequest } from './lib/utils/request';
-import * as crypto from 'crypto';
+import { V1Service } from './version/v1/v1.serivce';
+import { V2Service } from './version/v2/v2.service';
 
-class Qbit {
+class Client {
   private clientId: string;
   private clientSecret: string;
-  private baseUrl = 'https://api-global.qbitnetwork.com';
+  private baseUrl = 'https://api-global.ipeakoinnetwork.com';
   private accessToken = '';
 
-  /** 其他模块接口 */
+  private static V1Instance: V1Service;
+  private static V2Instance: V2Service;
 
   constructor(clientId: string, clientSecret: string, baseUrl?: string) {
     this.clientId = clientId;
@@ -17,44 +20,58 @@ class Qbit {
   }
 
   /**
+   * V1 版本接口
+   */
+  public get V1(): V1Service {
+    if (!Client.V1Instance) {
+      Client.V1Instance = new V1Service();
+    }
+    return Client.V1Instance;
+  }
+  /**
+   * V2 版本接口
+   */
+  public get V2(): V2Service {
+    if (!Client.V2Instance) {
+      Client.V2Instance = new V2Service();
+    }
+    return Client.V2Instance;
+  }
+
+  /**
    * 获取code
    */
-  public async getCode(state?: string, redirectUri?: string): Promise<QbitManage.IGetCodeOutput> {
+  public async getCode(params?: ClientManage.IGetCodeInput): Promise<ClientManage.IGetCodeOutput> {
     const url = `${this.baseUrl}/open-api/oauth/authorize`;
     const res = await getRequest(url, {
       clientId: this.clientId,
-      state,
-      redirectUri,
+      ...(params?.redirectUri && { redirectUri: params?.redirectUri }),
+      ...(params?.state && { state: params?.state }),
     });
-    const status = res?.status;
-    if (status >= 200 && status < 300) {
-      return (res.content as unknown) as QbitManage.IGetCodeOutput;
-    } else {
-      throw new Error(res?.content?.message);
-    }
+    return res;
   }
   /**
    * 获取access token
    */
-  public async getAccessToken(code: string): Promise<QbitManage.IGetAccessTokenOutput> {
+  public async getAccessToken(code: string): Promise<ClientManage.IGetAccessTokenOutput> {
     const url = `${this.baseUrl}/open-api/oauth/access-token`;
     const res = await postRequest(url, {
       clientId: this.clientId,
       clientSecret: this.clientSecret,
       code: code,
     });
-    return (res.content as unknown) as QbitManage.IGetAccessTokenOutput;
+    return res;
   }
   /**
    * 刷新access token
    */
-  public async refreshAccessToken(refreshToken: string): Promise<QbitManage.IRefreshAccessTokenOutput> {
+  public async refreshAccessToken(refreshToken: string): Promise<ClientManage.IRefreshAccessTokenOutput> {
     const url = `${this.baseUrl}/open-api/oauth/refresh-token`;
     const res = await postRequest(url, {
       clientId: this.clientId,
       refreshToken,
     });
-    return (res.content as unknown) as QbitManage.IRefreshAccessTokenOutput;
+    return res;
   }
 
   //#region 请求
@@ -68,9 +85,9 @@ class Qbit {
    * @param params
    * @returns
    */
-  public async postRequest(url: string, params: Record<string, any>): Promise<QbitManage.IOutput> {
+  public async postRequest(url: string, params: Record<string, any>): Promise<ClientManage.IOutput> {
     return await postRequest(url, params, {
-      'x-qbit-access-token': this.accessToken,
+      'x-ipeakoin-access-token': this.accessToken,
       'Content-Type': 'application/json',
     });
   }
@@ -80,9 +97,9 @@ class Qbit {
    * @param params
    * @returns
    */
-  public async putRequest(url: string, params: Record<string, any>): Promise<QbitManage.IOutput> {
+  public async putRequest(url: string, params: Record<string, any>): Promise<ClientManage.IOutput> {
     return await putRequest(url, params, {
-      'x-qbit-access-token': this.accessToken,
+      'x-ipeakoin-access-token': this.accessToken,
       'Content-Type': 'application/json',
     });
   }
@@ -92,9 +109,9 @@ class Qbit {
    * @param params
    * @returns
    */
-  public async deleteRequest(url: string, params: Record<string, any>): Promise<QbitManage.IOutput> {
+  public async deleteRequest(url: string, params: Record<string, any>): Promise<ClientManage.IOutput> {
     return await deleteRequest(url, params, {
-      'x-qbit-access-token': this.accessToken,
+      'x-ipeakoin-access-token': this.accessToken,
       'Content-Type': 'application/json',
     });
   }
@@ -104,9 +121,9 @@ class Qbit {
    * @param params
    * @returns
    */
-  public async getRequest(url: string, query: Record<string, any>): Promise<QbitManage.IOutput> {
+  public async getRequest(url: string, query: Record<string, any>): Promise<ClientManage.IOutput> {
     return await getRequest(url, query, {
-      'x-qbit-access-token': this.accessToken,
+      'x-ipeakoin-access-token': this.accessToken,
       'Content-Type': 'application/json',
     });
   }
@@ -117,27 +134,9 @@ class Qbit {
    */
   public encryptHmacSHA256(params: Record<string, any>, clientSecret?: string): string {
     const _clientSecret = clientSecret || this.clientSecret;
-
-    const keys = Object.keys(params);
-    keys.sort();
-
-    const result = [];
-
-    for (const key of keys) {
-      let val = params[key];
-      if (val == null) {
-        val = '';
-      }
-      result.push(`${key}=${val}`);
-    }
-
-    const str = result.join('&');
-
-    const hmac = crypto.createHmac('sha256', _clientSecret);
-    const sign = hmac.update(str).digest('hex');
-    return sign;
+    return encryptHmacSHA256(params, _clientSecret);
   }
   //#endregion 签名
 }
 
-export = Qbit;
+export = Client;
