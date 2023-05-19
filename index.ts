@@ -1,19 +1,18 @@
 import { ClientManage } from './lib/dto';
-import { encryptHmacSHA256 } from './lib/utils/crypto';
-import { deleteRequest, getRequest, postRequest, putRequest } from './lib/utils/request';
+import { RequestBaseService } from './request.base.service';
 import { V1Service } from './version/v1/v1.serivce';
 import { V2Service } from './version/v2/v2.service';
 
-class Client {
+class Client extends RequestBaseService {
   private clientId: string;
   private clientSecret: string;
   private baseUrl = 'https://api-global.ipeakoinnetwork.com';
-  private accessToken = '';
 
   private static V1Instance: V1Service;
   private static V2Instance: V2Service;
 
   constructor(clientId: string, clientSecret: string, baseUrl?: string) {
+    super();
     this.clientId = clientId;
     this.clientSecret = clientSecret;
     if (baseUrl) this.baseUrl = baseUrl;
@@ -43,7 +42,7 @@ class Client {
    */
   public async getCode(params?: ClientManage.IGetCodeInput): Promise<ClientManage.IGetCodeOutput> {
     const url = `${this.baseUrl}/open-api/oauth/authorize`;
-    const res = await getRequest(url, {
+    const res = await this.getRequest(url, {
       clientId: this.clientId,
       ...(params?.redirectUri && { redirectUri: params?.redirectUri }),
       ...(params?.state && { state: params?.state }),
@@ -55,7 +54,7 @@ class Client {
    */
   public async getAccessToken(code: string): Promise<ClientManage.IGetAccessTokenOutput> {
     const url = `${this.baseUrl}/open-api/oauth/access-token`;
-    const res = await postRequest(url, {
+    const res = await this.postRequest(url, {
       clientId: this.clientId,
       clientSecret: this.clientSecret,
       code: code,
@@ -67,74 +66,19 @@ class Client {
    */
   public async refreshAccessToken(refreshToken: string): Promise<ClientManage.IRefreshAccessTokenOutput> {
     const url = `${this.baseUrl}/open-api/oauth/refresh-token`;
-    const res = await postRequest(url, {
+    const res = await this.postRequest(url, {
       clientId: this.clientId,
       refreshToken,
     });
     return res;
   }
-
-  //#region 请求
-  public config(accessToken: string) {
-    this.accessToken = accessToken;
-    return this;
-  }
-  /**
-   * post 请求
-   * @param url
-   * @param params
-   * @returns
-   */
-  public async postRequest(url: string, params: Record<string, any>): Promise<ClientManage.IOutput> {
-    return await postRequest(url, params, {
-      'x-ipeakoin-access-token': this.accessToken,
-      'Content-Type': 'application/json',
-    });
-  }
-  /**
-   * put 请求
-   * @param url
-   * @param params
-   * @returns
-   */
-  public async putRequest(url: string, params: Record<string, any>): Promise<ClientManage.IOutput> {
-    return await putRequest(url, params, {
-      'x-ipeakoin-access-token': this.accessToken,
-      'Content-Type': 'application/json',
-    });
-  }
-  /**
-   * delete 请求
-   * @param url
-   * @param params
-   * @returns
-   */
-  public async deleteRequest(url: string, params: Record<string, any>): Promise<ClientManage.IOutput> {
-    return await deleteRequest(url, params, {
-      'x-ipeakoin-access-token': this.accessToken,
-      'Content-Type': 'application/json',
-    });
-  }
-  /**
-   * get 请求
-   * @param url
-   * @param params
-   * @returns
-   */
-  public async getRequest(url: string, query: Record<string, any>): Promise<ClientManage.IOutput> {
-    return await getRequest(url, query, {
-      'x-ipeakoin-access-token': this.accessToken,
-      'Content-Type': 'application/json',
-    });
-  }
-  //#endregion 请求
   //#region 签名
   /**
    * HMAC-SHA256 签名
    */
   public encryptHmacSHA256(params: Record<string, any>, clientSecret?: string): string {
     const _clientSecret = clientSecret || this.clientSecret;
-    return encryptHmacSHA256(params, _clientSecret);
+    return this.encryptHmacSHA256(params, _clientSecret);
   }
   //#endregion 签名
 }
