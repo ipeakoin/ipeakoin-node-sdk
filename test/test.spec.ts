@@ -1,9 +1,9 @@
 import Client from '../index';
-describe('qbit', () => {
+describe('client', () => {
   let client: Client;
 
   beforeAll(async () => {
-    client = new Client('qbit6857c6c64fe91a6c', '4562cc4554028413722a2e33f9115298', 'http://127.0.0.1:3000');
+    client = new Client('ipeakoin1ab59eccfbc78d1b', '93fc39d77ef6a3a7b5f26b83fbbebe81', 'http://127.0.0.1:3000');
   });
 
   it('获取access token', async () => {
