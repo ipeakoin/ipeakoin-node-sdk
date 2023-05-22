@@ -68,22 +68,29 @@ export namespace ClientManage {
     /**
      * City portion of the address.
      */
-    city: string;
+    city?: string;
 
     /**
      * Country portion of the address. Formatted as a two-letter country code specified in ISO 3166-1 alpha-2.
      */
-    country: string;
+    country?: string;
 
     /**
      * Postal / ZIP code of the address.
      */
-    postalCode: string;
+    postalCode?: string;
 
     /**
+     * 按照文档 state 和 district 取其一
      * State / County / Province / Region portion of the address. If the country is US or Canada, then district is required and should use the two-letter code for the subdivision.
      */
-    state: string;
+    state?: string;
+
+    /**
+     * 按照文档 state 和 district 取其一
+     * State / County / Province / Region portion of the address. If the country is US or Canada, then district is required and should use the two-letter code for the subdivision.
+     */
+    district?: string;
   }
 
   /** 统一名称格式 */

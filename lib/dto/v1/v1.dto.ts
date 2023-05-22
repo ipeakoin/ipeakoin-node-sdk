@@ -941,4 +941,455 @@ export namespace ClientV1Mange {
     }
   }
   //#endregion
+
+  //#region  crypto Assets
+  export namespace cryptoAssets {
+    export interface BalancesInput extends ClientManage.Input {
+      id?: string;
+      accountId?: string;
+      currency?: string;
+    }
+
+    export interface BalancesOutput extends ClientManage.Output {
+      content: {
+        code: string;
+        message: string;
+        data: {
+          id: string;
+          accountId: string;
+          available: number;
+          pending: number;
+          frozen: number;
+          currency: string;
+          status: string;
+          createTime: Date;
+        };
+      };
+    }
+
+    export interface AddressesInput extends ClientManage.Input, ClientManage.ListInput {
+      accountId?: string;
+      chain?: string;
+      currency?: string;
+    }
+
+    export interface AddressesOutput extends ClientManage.Output {
+      content: {
+        code: string;
+        message: string;
+        data: {
+          data: {
+            currency: string;
+            chain: string;
+            address: string;
+            selected: string;
+          }[];
+          total: number;
+          pageTotal: number;
+        };
+      };
+    }
+
+    export interface CreateBlockchainAddressInput extends ClientManage.Input {
+      accountId: string;
+      currency: string;
+      chain: string;
+    }
+
+    export interface CreateBlockchainAddressOutput extends ClientManage.Output {
+      content: {
+        code: string;
+        message: string;
+        data: {
+          currency: string;
+          chain: string;
+          address: string;
+          selected: string;
+        }[];
+      };
+    }
+
+    export interface DepositsInput extends ClientManage.Input, ClientManage.ListInput {
+      accountId?: string;
+      balanceId?: string;
+      currency?: string;
+    }
+
+    export interface DepositsOutput extends ClientManage.Output {
+      content: {
+        code: string;
+        message: string;
+        data: {
+          data: {
+            id: string;
+            accountId: string;
+            balanceId: string;
+            chain: string;
+            currency: string;
+            amount: string;
+            fee: string;
+            status: string;
+            transactionHash?: string;
+            createTime: Date;
+            updateTime: Date;
+          }[];
+          total: number;
+          pageTotal: number;
+        };
+      };
+    }
+
+    export type WithdrawalsInput = DepositsInput;
+    export type WithdrawalsOutput = DepositsOutput;
+
+    export interface WithdrawalInput extends ClientManage.Input {
+      accountId?: string;
+      chain: string;
+      currency: string;
+      amount: string;
+      address: string;
+    }
+
+    export interface WithdrawalOutput extends ClientManage.Output {
+      content: {
+        code: string;
+        message: string;
+        data: {
+          id: string;
+          accountId: string;
+          balanceId: string;
+          chain: string;
+          currency: string;
+          amount: string;
+          fee: string;
+          status: string;
+          transactionHash?: string;
+          createTime: Date;
+          updateTime: Date;
+        };
+      };
+    }
+
+    export type BillsInput = DepositsInput;
+    export type BillsOutput = DepositsOutput;
+
+    export interface CurrencyPairInput extends ClientManage.Input {
+      fromCurrency: string;
+      toCurrency: string;
+    }
+
+    export interface CurrencyPairOutput extends ClientManage.Output {
+      content: {
+        code: string;
+        message: string;
+        data: {
+          symbol: string;
+          baseCurrency: string;
+          baseMin: string;
+          baseMax?: string;
+          quoteCurrency: string;
+          quoteMin: string;
+          quoteMax?: string;
+        };
+      };
+    }
+
+    export interface EstimateQuoteInput extends ClientManage.Input {
+      accountId?: string;
+      baseCurrency: string;
+      quoteCurrency: string;
+      side: string;
+      rfqCurrency: string;
+      rfqAmount: string;
+    }
+
+    export interface EstimateQuoteOutput extends ClientManage.Output {
+      content: {
+        code: string;
+        message: string;
+        data: {
+          id: string;
+          accountId: string;
+          symbol: string;
+          status: string;
+          fee: string;
+          feeCurrency: string;
+          rate: string;
+          baseCurrency: string;
+          quoteCurrency: string;
+          baseAmount: string;
+          quoteAmount: string;
+          side: string;
+          createTime: Date;
+          updateTime: Date;
+        };
+      };
+    }
+
+    export interface TradesInput extends ClientManage.Input, ClientManage.ListInput {
+      accountId?: string;
+      id?: string;
+      currency?: string;
+    }
+
+    export interface TradesOutput extends ClientManage.Output {
+      content: {
+        code: string;
+        message: string;
+        data: {
+          data: {
+            id: string;
+            accountId: string;
+            symbol: string;
+            status: string;
+            fee: string;
+            feeCurrency: string;
+            rate: string;
+            baseCurrency: string;
+            quoteCurrency: string;
+            baseAmount: string;
+            quoteAmount: string;
+            side: string;
+            createTime: Date;
+            updateTime: Date;
+          }[];
+          total: number;
+          pageTotal: number;
+        };
+      };
+    }
+
+    export interface TradeInput extends ClientManage.Input {
+      accountId?: string;
+      baseCurrency: string;
+      quoteCurrency?: string;
+      side: string;
+      rfqCurrency: string;
+      rfqAmount: string;
+      quoteId: string;
+    }
+
+    export interface TradeOutput extends ClientManage.Output {
+      content: {
+        code: string;
+        message: string;
+        data: {
+          id: string;
+          accountId: string;
+          symbol: string;
+          status: string;
+          fee: string;
+          feeCurrency: string;
+          rate: string;
+          baseCurrency: string;
+          quoteCurrency: string;
+          baseAmount: string;
+          quoteAmount: string;
+          side: string;
+          createTime: Date;
+          updateTime: Date;
+        }[];
+      };
+    }
+
+    export interface WiresInput extends ClientManage.Input, ClientManage.ListInput {
+      id?: string;
+      username?: string;
+    }
+
+    export interface WiresOutput extends ClientManage.Output {
+      content: {
+        code: string;
+        message: string;
+        data: {
+          data: {
+            id: string;
+            firstName: string;
+            lastName: string;
+            accountNumber?: string;
+            iban?: string;
+            bank?: {
+              city: string;
+              country: string;
+              bankName: string;
+            };
+            billingAddress: ClientManage.Address;
+            status: string;
+            createTime: Date;
+            updateTime: Date;
+          }[];
+          total: number;
+          pageTotal: number;
+        };
+      };
+    }
+
+    export interface WireInput extends ClientManage.Input {
+      firstName: string;
+      lastName: string;
+      accountNumber?: string;
+      routingNumber?: string;
+      iban?: string;
+      bank: {
+        city: string;
+        country: string;
+        bankName: string;
+      };
+      billingAddress: ClientManage.Address;
+    }
+
+    export interface WireOutput extends ClientManage.Output {
+      content: {
+        code: string;
+        message: string;
+        data: {
+          id: string;
+          firstName: string;
+          lastName: string;
+          accountNumber?: string;
+          iban?: string;
+          bank?: {
+            city: string;
+            country: string;
+            bankName: string;
+          };
+          billingAddress: ClientManage.Address;
+          status: string;
+          createTime: Date;
+          updateTime: Date;
+        }[];
+      };
+    }
+
+    export interface DeleteWireInput extends ClientManage.Input {
+      id: string;
+    }
+
+    export type DeleteWireOutput = ClientManage.BooleanOutput;
+
+    export interface PayoutsInput extends ClientManage.Input, ClientManage.ListInput {
+      id?: string;
+      wireId?: string;
+    }
+
+    export interface PayoutsOutput extends ClientManage.Output {
+      content: {
+        code: string;
+        message: string;
+        data: {
+          data: {
+            id: string;
+            balanceId: string;
+            currency: string;
+            amount: string;
+            fee: string;
+            wireId: string;
+            status: string;
+            wire: {
+              id: string;
+              firstName: string;
+              lastName: string;
+              accountNumber?: string;
+              iban?: string;
+              bank?: {
+                city: string;
+                country: string;
+                bankName: string;
+              };
+              billingAddress: ClientManage.Address;
+              status: string;
+              createTime: Date;
+              updateTime: Date;
+            };
+            externalRef: string;
+            createTime: Date;
+            updateTime: Date;
+          }[];
+          total: number;
+          pageTotal: number;
+        };
+      };
+    }
+
+    export interface PayoutInput extends ClientManage.Input {
+      accountId: string;
+      wireId: string;
+      amount: string;
+    }
+
+    export interface PayoutOutput extends ClientManage.Output {
+      content: {
+        code: string;
+        message: string;
+        data: {
+          id: string;
+          balanceId: string;
+          currency: string;
+          amount: string;
+          fee: string;
+          wireId: string;
+          status: string;
+          wire: {
+            id: string;
+            firstName: string;
+            lastName: string;
+            accountNumber?: string;
+            iban?: string;
+            bank?: {
+              city: string;
+              country: string;
+              bankName: string;
+            };
+            billingAddress: ClientManage.Address;
+            status: string;
+            createTime: Date;
+            updateTime: Date;
+          };
+          externalRef: string;
+          createTime: Date;
+          updateTime: Date;
+        }[];
+      };
+    }
+
+    export interface PayoutInfoInput extends ClientManage.Input {
+      id: string;
+    }
+
+    export interface PayoutInfoOutput extends ClientManage.Output {
+      content: {
+        code: string;
+        message: string;
+        data: {
+          id: string;
+          balanceId: string;
+          currency: string;
+          amount: string;
+          fee: string;
+          wireId: string;
+          status: string;
+          wire: {
+            id: string;
+            firstName: string;
+            lastName: string;
+            accountNumber?: string;
+            iban?: string;
+            bank?: {
+              city: string;
+              country: string;
+              bankName: string;
+            };
+            billingAddress: ClientManage.Address;
+            status: string;
+            createTime: Date;
+            updateTime: Date;
+          };
+          externalRef: string;
+          createTime: Date;
+          updateTime: Date;
+        }[];
+      };
+    }
+  }
+  //#endregion
 }
