@@ -744,7 +744,7 @@ export namespace ClientV1Mange {
 
     export type CreateGlobalAccountOutput = ClientManage.BooleanOutput;
 
-    export interface BanksInput extends ClientManage.Input {
+    export interface BanksInput extends ClientManage.Input, ClientManage.ListInput {
       accountId: string;
       globalSubAccountId: string;
       id?: string;
@@ -771,6 +771,168 @@ export namespace ClientV1Mange {
             branchName: string;
             branchCode?: string;
             status: string;
+          }[];
+          total: number;
+          pageTotal: number;
+        };
+      };
+    }
+
+    export interface BeneficiariesInput extends ClientManage.Input {
+      accountId: string;
+      globalSubAccountId: string;
+      id?: string;
+      currency?: string;
+    }
+
+    export interface BeneficiarieInfo {
+      id: string;
+      accountId: string;
+      currency: string;
+      type: string;
+      userName: string;
+      accountNumber: string;
+      relationship: string;
+      receiverAddress: ClientManage.Address;
+      bankName: string;
+      bankAddress: ClientManage.Address;
+      bankBranchName: string;
+      certificateNo: string;
+      routingType?: string;
+      routingNumber?: string;
+      bic?: string;
+      iban?: string;
+    }
+
+    export interface BeneficiariesOutput extends ClientManage.Output {
+      content: {
+        code: string;
+        message: string;
+        data: {
+          data: BeneficiarieInfo[];
+          total: number;
+          pageTotal: number;
+        };
+      };
+    }
+
+    export interface CreateBeneficiarieInput extends ClientManage.Input {
+      accountId: string;
+      firstName?: string;
+      lastName: string;
+      currency: string;
+      accountNumber?: string;
+      relationship: string;
+      receiverAddress?: ClientManage.Address;
+      bankAddress?: ClientManage.Address;
+      bankName?: string;
+      type?: string;
+      bankBranchName?: string;
+      certificateNo?: string;
+      bic?: string;
+      iban?: string;
+      routingNumber?: string;
+      routingNumber2?: string;
+    }
+
+    export interface CreateBeneficiarieOutput extends ClientManage.Output {
+      content: {
+        code: string;
+        message: string;
+        data: BeneficiarieInfo[];
+      };
+    }
+
+    export interface RateInput extends ClientManage.Input {
+      accountId: string;
+      buyCurrency: string;
+      sellCurrency: string;
+    }
+
+    export interface RateOutput extends ClientManage.Output {
+      content: {
+        code: string;
+        message: string;
+        data: {
+          pair: string;
+          rate: string;
+          exchangeRateId: string;
+        };
+      };
+    }
+
+    export interface PaymentInfo {
+      accountId: string;
+      balanceId: string;
+      receiverId: string;
+      amount: number;
+      clientTransactionId: string;
+      reference: string;
+      transferType?: string;
+      feeType?: string;
+      purposeCode?: string;
+      exchangeRateId?: string;
+      realPaymentAmount?: number;
+      shopType?: string;
+    }
+
+    export interface PaymentInput extends ClientManage.Input, PaymentInfo {}
+
+    export type PaymentOutput = ClientManage.BooleanOutput;
+
+    export interface BatchPaymentInput extends ClientManage.Input {
+      paymentList: PaymentInfo[];
+    }
+
+    export type BatchPaymentOutput = ClientManage.BooleanOutput;
+
+    export interface PaymentFeeInput extends ClientManage.Input {
+      accountId: string;
+      balanceId: string;
+      receiverId: string;
+      amount: number;
+      feeType?: string;
+      transferType?: string;
+      shopType?: string;
+    }
+
+    export interface PaymentFeeOutput extends ClientManage.Output {
+      content: {
+        code: string;
+        message: string;
+        data: {
+          total: number;
+          fee: number;
+        };
+      };
+    }
+
+    export interface PaymentTxsInput extends ClientManage.Input, ClientManage.ListInput {
+      accountId: string;
+      clientTransactionId?: string;
+      currency?: string;
+      id?: string;
+    }
+
+    export interface PaymentTxsOutput extends ClientManage.Output {
+      content: {
+        code: string;
+        message: string;
+        data: {
+          data: {
+            id: string;
+            accountId: string;
+            currency: string;
+            settlementCurrency: string;
+            counterparty: string;
+            transactionAmount: number;
+            fee: number;
+            businessType: string;
+            status: string;
+            clientTransactionId: string;
+            transactionId: string;
+            createTime: Date;
+            transactionTime: Date;
           }[];
           total: number;
           pageTotal: number;
