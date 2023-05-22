@@ -60,7 +60,7 @@ export const uploadRequest = async (
 };
 
 /**
- * 上传文件
+ * 上传人脸
  */
 export const faceAuthRequest = async (
   url: string,
