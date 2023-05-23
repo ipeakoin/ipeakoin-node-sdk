@@ -80,13 +80,6 @@ describe('V1', () => {
     });
     console.log(JSON.stringify(res));
   });
-  it('OCR (Passport)', async () => {
-    const res = await client.v1.ocrPassport({
-      accessToken,
-      image: '8434a222-4289-46e0-b317-b93c4558ea98',
-    });
-    console.log(JSON.stringify(res));
-  });
   it('Submit account KYC', async () => {
     const res = await client.v1.submitAccountKyc({
       accessToken,
