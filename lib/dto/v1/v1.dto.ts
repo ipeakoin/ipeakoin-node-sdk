@@ -321,7 +321,7 @@ export namespace ClientV1Mange {
     };
   }
 
-  export interface BalancesInput extends ClientManage.Input {
+  export interface BalancesInput extends ClientManage.Input, ClientManage.ListInput {
     id?: string;
     accountId?: string;
     walletType?: string;
@@ -335,9 +335,9 @@ export namespace ClientV1Mange {
         data: {
           id: string;
           accountId: string;
-          available: number;
-          pending: number;
-          frozen: number;
+          available: string;
+          pending: string;
+          frozen: string;
           currency: string;
           status: string;
           createTime: Date;
@@ -462,7 +462,7 @@ export namespace ClientV1Mange {
 
     export interface IncreaseBudgetBalanceInput extends ClientManage.Input {
       budgetId: string;
-      cost: string;
+      cost: number;
       clientTransactionId?: string;
     }
 
@@ -722,12 +722,14 @@ export namespace ClientV1Mange {
         data: {
           data: {
             id: string;
-            accountId: string;
-            createTime: Date;
+            holderId: string;
             nickname: string;
             purpose: string;
             currency: string;
             balanceId: string;
+            accountId: string;
+            createTime: Date;
+            beneficiaries: BeneficiaryInfo[];
           }[];
           total: number;
           pageTotal: number;
@@ -740,6 +742,7 @@ export namespace ClientV1Mange {
       currency: string;
       purpose: string;
       nickname?: string;
+      // holderId: string;
     }
 
     export type CreateGlobalAccountOutput = ClientManage.BooleanOutput;
@@ -749,6 +752,7 @@ export namespace ClientV1Mange {
       globalSubAccountId: string;
       id?: string;
       currency?: string;
+      // holderId: string;
     }
 
     export interface BanksOutput extends ClientManage.Output {
@@ -760,16 +764,15 @@ export namespace ClientV1Mange {
             id: string;
             accountId: string;
             createTime: Date;
-            accountName: string;
-            accountNo?: string;
-            currency: string;
-            bankName: string;
+            holderId?: string;
+            globalSubAccountId: string;
+            accountNo: string;
             bankAddress: string;
-            swift?: string;
-            routingNumber?: string;
+            bankName: string;
+            routingNumber: string;
             routingType: string;
-            branchName: string;
-            branchCode?: string;
+            currency: string;
+            accountName: string;
             status: string;
           }[];
           total: number;
@@ -778,30 +781,68 @@ export namespace ClientV1Mange {
       };
     }
 
-    export interface BeneficiariesInput extends ClientManage.Input {
+    export interface BeneficiariesInput extends ClientManage.Input, ClientManage.ListInput {
       accountId: string;
       globalSubAccountId: string;
       id?: string;
       currency?: string;
     }
 
-    export interface BeneficiarieInfo {
+    export interface BeneficiaryInfo {
+      createTime: Date;
+      /** 收款方ID */
       id: string;
+
+      /** 账户ID */
       accountId: string;
+
+      /** 持有人ID */
+      holderId: string;
+
+      /** 状态 */
+      status: string;
+
+      /** 币种 */
       currency: string;
-      type: string;
+
+      /** 收款方名称 */
       userName: string;
+
+      /** 账户类型 */
+      accountType: string;
+
+      /** 银行账号 */
       accountNumber: string;
-      relationship: string;
+
+      /** 收款方地址 */
       receiverAddress: ClientManage.Address;
+
+      /** 银行名称 */
       bankName: string;
+
+      /** 银行地址 */
       bankAddress: ClientManage.Address;
+
+      /** 银行支行名称 */
       bankBranchName: string;
+
+      /** 个人证件号、企业统一社会信用代码 */
       certificateNo: string;
-      routingType?: string;
-      routingNumber?: string;
-      bic?: string;
-      iban?: string;
+
+      /** Routing type */
+      routingType: string;
+
+      /** Routing number */
+      routingNumber: string;
+
+      /** Bic Swift */
+      bic: string;
+
+      /** Iban */
+      iban: string;
+
+      /** label */
+      label: string;
     }
 
     export interface BeneficiariesOutput extends ClientManage.Output {
@@ -809,24 +850,47 @@ export namespace ClientV1Mange {
         code: string;
         message: string;
         data: {
-          data: BeneficiarieInfo[];
+          data: BeneficiaryInfo[];
           total: number;
           pageTotal: number;
         };
       };
     }
 
-    export interface CreateBeneficiarieInput extends ClientManage.Input {
+    // 收款人账户关系
+    export enum RelationshipEnum {
+      /** 同名账户 */
+      SAME_ACCOUNT = 'SAME_ACCOUNT',
+      /** 渠道验证 **/
+      CHANNEL_CHECK = 'CHANNEL_CHECK',
+      /** 非同名账户 */
+      NOT_SAME_ACCOUNT = 'NOT_SAME_ACCOUNT',
+      /** 电商平台/独立站收款 */
+      E_COMMERCE_PLATFORM = 'E_COMMERCE_PLATFORM',
+      /** 其他渠道/机构加款 */
+      OTHER_CHANNELS = 'OTHER_CHANNELS',
+
+      // 关联主体
+      ASSOCIATED_SUBJECT = 'ASSOCIATED_SUBJECT',
+      // 贸易关系
+      TRADE_RELATIONS = 'TRADE_RELATIONS',
+      // 代理关系、供销关系关联公司
+      AGENCY_RELATIONSHIP = 'AGENCY_RELATIONSHIP',
+      // 同名主体
+      SAME_SUBJECT = 'SAME_SUBJECT',
+    }
+
+    export interface CreateBeneficiariesInput extends ClientManage.Input {
       accountId: string;
       firstName?: string;
       lastName: string;
       currency: string;
       accountNumber?: string;
-      relationship: string;
+      relationship: RelationshipEnum;
       receiverAddress?: ClientManage.Address;
       bankAddress?: ClientManage.Address;
       bankName?: string;
-      type?: string;
+      type: 'Individual' | 'Business' | 'Enterprise';
       bankBranchName?: string;
       certificateNo?: string;
       bic?: string;
@@ -835,11 +899,11 @@ export namespace ClientV1Mange {
       routingNumber2?: string;
     }
 
-    export interface CreateBeneficiarieOutput extends ClientManage.Output {
+    export interface CreateBeneficiariesOutput extends ClientManage.Output {
       content: {
         code: string;
         message: string;
-        data: BeneficiarieInfo[];
+        data: BeneficiaryInfo[];
       };
     }
 
@@ -957,13 +1021,13 @@ export namespace ClientV1Mange {
         data: {
           id: string;
           accountId: string;
-          available: number;
-          pending: number;
-          frozen: number;
+          available: string;
+          pending: string;
+          frozen: string;
           currency: string;
           status: string;
           createTime: Date;
-        };
+        }[];
       };
     }
 
@@ -991,7 +1055,7 @@ export namespace ClientV1Mange {
     }
 
     export interface CreateBlockchainAddressInput extends ClientManage.Input {
-      accountId: string;
+      accountId?: string;
       currency: string;
       chain: string;
     }
@@ -1213,7 +1277,7 @@ export namespace ClientV1Mange {
               country: string;
               bankName: string;
             };
-            billingAddress: ClientManage.Address;
+            billingAddress?: ClientManage.Address;
             status: string;
             createTime: Date;
             updateTime: Date;
@@ -1253,7 +1317,7 @@ export namespace ClientV1Mange {
             country: string;
             bankName: string;
           };
-          billingAddress: ClientManage.Address;
+          billingAddress?: ClientManage.Address;
           status: string;
           createTime: Date;
           updateTime: Date;
@@ -1285,22 +1349,6 @@ export namespace ClientV1Mange {
             fee: string;
             wireId: string;
             status: string;
-            wire: {
-              id: string;
-              firstName: string;
-              lastName: string;
-              accountNumber?: string;
-              iban?: string;
-              bank?: {
-                city: string;
-                country: string;
-                bankName: string;
-              };
-              billingAddress: ClientManage.Address;
-              status: string;
-              createTime: Date;
-              updateTime: Date;
-            };
             externalRef: string;
             createTime: Date;
             updateTime: Date;
@@ -1312,7 +1360,7 @@ export namespace ClientV1Mange {
     }
 
     export interface PayoutInput extends ClientManage.Input {
-      accountId: string;
+      accountId?: string;
       wireId: string;
       amount: string;
     }
@@ -1329,22 +1377,6 @@ export namespace ClientV1Mange {
           fee: string;
           wireId: string;
           status: string;
-          wire: {
-            id: string;
-            firstName: string;
-            lastName: string;
-            accountNumber?: string;
-            iban?: string;
-            bank?: {
-              city: string;
-              country: string;
-              bankName: string;
-            };
-            billingAddress: ClientManage.Address;
-            status: string;
-            createTime: Date;
-            updateTime: Date;
-          };
           externalRef: string;
           createTime: Date;
           updateTime: Date;

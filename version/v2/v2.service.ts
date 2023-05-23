@@ -1,4 +1,3 @@
-import { ClientManage } from '../../lib/dto/dto';
 import { ClientV2Mange } from '../../lib/dto/v1/v2.dto';
 import { RequestBaseService } from '../../request.base.service';
 

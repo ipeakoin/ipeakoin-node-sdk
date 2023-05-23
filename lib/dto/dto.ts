@@ -1,5 +1,5 @@
 export const ACCESS_TOKEN_NAME = 'x-ipeakoin-access-token';
-export const BASE_URL = 'https://api-global.ipeakoinnetwork.com';
+export const BASE_URL = 'https://api.ipeakoin.com';
 
 /**
  * status http 返回code 码

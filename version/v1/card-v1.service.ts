@@ -86,7 +86,7 @@ export class CardV1Service extends RequestBaseService {
     return this.putRequest('/open-api/v1/cards/suspend', input);
   }
   /**
-   * Frozen quantum card
+   * Unfrozen quantum card
    */
   public async enableCard(input: ClientV1Mange.card.EnableCardInput): Promise<ClientV1Mange.card.EnableCardOutput> {
     return this.putRequest('/open-api/v1/cards/enable', input);
@@ -113,6 +113,20 @@ export class CardV1Service extends RequestBaseService {
    * List all quantum card transactions
    */
   public async getCardTransactions(input: ClientV1Mange.card.CardTxsInput): Promise<ClientV1Mange.card.CardTxsOutput> {
-    return this.getRequest('/open-api/v1/cards/transactions', input);
+    const res = await this.getRequest('/open-api/v1/cards/transactions', input);
+    const data = res.content?.data;
+    const pageTotal = res.content?.pageTotal || 0;
+    const total = res.content?.total;
+    return {
+      ...res,
+      content: {
+        ...res.content,
+        data: {
+          data,
+          pageTotal,
+          total,
+        },
+      },
+    };
   }
 }

@@ -32,8 +32,8 @@ const qbit = new Qbit('qbit1f6efee44ceb8ca2', '8f70d42a1393802aebf567be27a47879'
 ### ts 中使用
 
 ```ts
-import Qbit from 'qbit-node-sdk';
-const qbit = new Qbit('qbit1f6efee44ceb8ca2', '8f70d42a1393802aebf567be27a47879', 'https://api-global.qbitnetwork.com');
+import Client from 'qbit-node-sdk';
+const client = new Client('qbit1f6efee44ceb8ca2', '8f70d42a1393802aebf567be27a47879', 'https://api-global.qbitnetwork.com');
 ```
 
 ### nest 框架中使用
@@ -48,58 +48,6 @@ const qbit = new Qbit('qbit1f6efee44ceb8ca2', '8f70d42a1393802aebf567be27a47879'
 - clientSecret，商户密钥，用于签名，请联系我们申请。
 
 ## 开始
-
-### 获取 access token
-
-```ts
-const codeRes = await qbit.getCode('111');
-const accessTokenRes = await qbit.getAccessToken(codeRes.code);
-console.log(accessTokenRes);
-```
-
-### 刷新 access token
-
-```ts
-const res = await qbit.refreshAccessToken(refreshToken);
-console.log(res);
-```
-
-### 调用其他接口示例
-
-```ts
-// 返回值 status 在 200 - 300 内表示请求正常
-const res = await qbit.config(accessToken).postRequest('https://api-global.qbitnetwork.com/open-api/v1/budget', {
-  name: '测试',
-  cost: 10,
-});
-console.log(res);
-```
-
-## 敏感信息加解密
-
-### 加密-HmacSHA256
-
-```ts
-const params = {
-  id: 'ee74c872-8173-4b67-81b1-5746e7d5ab88',
-  accountId: null,
-  holderId: 'd2bd6ab3-3c28-4ac7-a7c4-b7eed5eee367',
-  currency: 'USD',
-  settlementCurrency: null,
-  counterparty: 'SAILINGWOOD;;US;1800948598;;091000019',
-  transactionAmount: 11,
-  fee: 0,
-  businessType: 'Inbound',
-  status: 'Closed',
-  transactionTime: '2021-11-22T07:34:10.997Z',
-  transactionId: '124d3804-defa-4033-9f30-1d8b0468e506',
-  clientTransactionId: null,
-  createTime: '2021-11-22T07:34:10.997Z',
-  appendFee: 0,
-};
-const sign = qbit.encryptHmacSHA256(params, '25d55ad283aa400af464c76d713c07ad');
-console.log(sign);
-```
 
 ## 联系我们
 

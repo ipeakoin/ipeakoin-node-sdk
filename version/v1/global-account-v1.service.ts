@@ -34,16 +34,16 @@ export class GlobalAccountV1Service extends RequestBaseService {
   /**
    * Create a beneficiary
    */
-  public async createBeneficiarie(
-    input: ClientV1Mange.globalAccount.CreateBeneficiarieInput,
-  ): Promise<ClientV1Mange.globalAccount.CreateBeneficiarieOutput> {
+  public async createBeneficiaries(
+    input: ClientV1Mange.globalAccount.CreateBeneficiariesInput,
+  ): Promise<ClientV1Mange.globalAccount.CreateBeneficiariesOutput> {
     return this.postRequest('/open-api/v1/global/beneficiaries', input);
   }
   /**
    * Get a exchange rate
    */
   public async getRate(input: ClientV1Mange.globalAccount.RateInput): Promise<ClientV1Mange.globalAccount.RateOutput> {
-    return this.getRequest('/open-api/v1/global/exchange_rates', input);
+    return this.postRequest('/open-api/v1/global/exchange_rates', input);
   }
   /**
    * Create a payment
@@ -61,7 +61,7 @@ export class GlobalAccountV1Service extends RequestBaseService {
    * Get a payment fee
    */
   public async getPaymentFee(input: ClientV1Mange.globalAccount.PaymentFeeInput): Promise<ClientV1Mange.globalAccount.PaymentFeeOutput> {
-    return this.getRequest('/open-api/v1/global/payment/fee', input);
+    return this.postRequest('/open-api/v1/global/payment/fee', input);
   }
   /**
    * List all payment transactions

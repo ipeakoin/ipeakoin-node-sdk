@@ -2,3 +2,5 @@ node_modules
 dist
 .vscode
 yarn.lock
+test/3.jpg
+test/face.mp4

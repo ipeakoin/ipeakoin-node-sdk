@@ -1,4 +1,5 @@
 import { ClientManage } from './lib/dto/dto';
+import { encryptHmacSHA256 } from './lib/utils/crypto';
 import { RequestBaseService } from './request.base.service';
 import { V1Service } from './version/v1/v1.service';
 import { V2Service } from './version/v2/v2.service';
@@ -21,7 +22,7 @@ class Client extends RequestBaseService {
   /**
    * V1 版本接口
    */
-  public get V1(): V1Service {
+  public get v1(): V1Service {
     if (!Client.V1Instance) {
       Client.V1Instance = new V1Service(this.clientId, this.clientSecret, this.baseUrl);
     }
@@ -30,7 +31,7 @@ class Client extends RequestBaseService {
   /**
    * V2 版本接口
    */
-  public get V2(): V2Service {
+  public get v2(): V2Service {
     if (!Client.V2Instance) {
       Client.V2Instance = new V2Service(this.clientId, this.clientSecret, this.baseUrl);
     }
@@ -78,7 +79,7 @@ class Client extends RequestBaseService {
    */
   public encryptHmacSHA256(params: Record<string, any>, clientSecret?: string): string {
     const _clientSecret = clientSecret || this.clientSecret;
-    return this.encryptHmacSHA256(params, _clientSecret);
+    return encryptHmacSHA256(params, _clientSecret);
   }
   //#endregion 签名
 }

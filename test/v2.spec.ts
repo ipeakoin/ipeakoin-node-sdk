@@ -9,15 +9,15 @@ describe('V1', () => {
   });
 
   it('List all cards', async () => {
-    const res = await client.V2.getCards({
+    const res = await client.v2.getCards({
       accessToken,
     });
     console.log(JSON.stringify(res));
   });
   it('Get a card', async () => {
-    const res = await client.V2.getCard({
+    const res = await client.v2.getCard({
       accessToken,
-      id: '',
+      id: '077c9b0d-2b5f-482c-8f01-cddf84dbf5bd',
     });
     console.log(JSON.stringify(res));
   });

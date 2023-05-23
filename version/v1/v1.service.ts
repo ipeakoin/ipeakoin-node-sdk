@@ -109,12 +109,12 @@ export class V1Service extends RequestBaseService {
    * Trigger webhook
    */
   public async triggerWebhook(input: ClientV1Mange.TriggerWebhookInput): Promise<ClientV1Mange.TriggerWebhookOutput> {
-    return this.postRequest('/open-api/v1/asset/transfers', input);
+    return this.postRequest('/open-api/v1/notifications/trigger', input);
   }
   /**
    * V1 版本 card 接口
    */
-  public get quantumCard(): CardV1Service {
+  public get card(): CardV1Service {
     if (!V1Service.cardV1Instance) {
       V1Service.cardV1Instance = new CardV1Service(this.clientId, this.clientSecret, this.baseUrl);
     }
