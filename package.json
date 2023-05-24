@@ -1,7 +1,7 @@
 {
-  "name": "qbit-node-sdk",
-  "version": "1.1.0",
-  "description": "qbit bass api 接口支持",
+  "name": "ipeakoin-node-sdk",
+  "version": "0.0.1-beta",
+  "description": "iPeakoin bass api 接口支持",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -12,19 +12,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/klover2/qbit-node-sdk.git"
+    "url": "git+https://github.com/klover2/ipeakoin-node-sdk.git"
   },
   "keywords": [
-    "qbit",
+    "iPeakoin",
     "全球账户",
     "量子卡"
   ],
-  "author": "Qbit Team",
+  "author": "iPeakoin Team",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/klover2/qbit-node-sdk/issues"
+    "url": "https://github.com/klover2/ipeakoin-node-sdk/issues"
   },
-  "homepage": "https://github.com/klover2/qbit-node-sdk#readme",
+  "homepage": "https://github.com/klover2/ipeakoin-node-sdk#readme",
   "files": [
     "dist"
   ],
