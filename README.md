@@ -2,27 +2,27 @@
   <h1 align="center"><a href="javascript:void(0);">ipeakoin-node-sdk</a></h1>
 </p>
 
-## iPeakoin 概念
+## iPeakoin Concept
 
-开发者 API 旨在允许企业与 iPeakoin 系统集成，并轻松将其作为其工作流程的一部分。该 API 允许开发者使用【全球账户】、【量子卡】、【加密资产】业务等。
+The developer API aims to allow enterprises to integrate with iPeakoin systems and easily make it part of their workflow. This API allows developers to use businesses such as [GLOBAL ACCOUNT], [CRYPTO ASSET], and [QUANTUM CARD].
 
-## 项目状态
+## Project Status
 
-支持了 auth 相关的接口，同时也提供了 iPeakoin Api 所需的 Post、put、delete、get 请求，方便使用者更好调用其他接口，具体使用请看下面代码示例。
+It supports auth related interfaces and also provides other interfaces required by iPeakoin Api. Please refer to the following code example for specific usage.
 
-`注意`：请商户的专业技术人员在使用时注意系统和软件的正确性和兼容性，以及带来的风险。
+`Notice`：Please ask the professional technical personnel of the merchant to pay attention to the correctness and compatibility of the system and software, as well as the risks involved when using them.
 
-## 环境要求
+## Environmental Requirements
 
 - Node 12+
 
-## 安装
+## Install
 
-最新版本已经在 [npmjs](https://www.npmjs.com/package/ipeakoin-node-sdk) 发布。
+The latest version is already available in [npmjs](https://www.npmjs.com/package/ipeakoin-node-sdk)。
 
-`yarn add ipeakoin-node-sdk` 或者 `npm i ipeakoin-node-sdk`
+`yarn add ipeakoin-node-sdk` or `npm i ipeakoin-node-sdk`
 
-### js 中使用
+### Used in JS
 
 ```js
 const Client = require('ipeakoin-node-sdk');
@@ -34,7 +34,7 @@ const client = new Client({
 });
 ```
 
-### ts 中使用
+### Used in TS
 
 ```ts
 import Client from 'ipeakoin-node-sdk';
@@ -46,7 +46,7 @@ const client = new Client({
 });
 ```
 
-## 开始
+## Start Using
 
 ### get access token
 
@@ -195,6 +195,6 @@ const res = await client.v2.getCards({
 | List all cards | client.v2.getCards(...) |
 | Get a card     | client.v2.getCard(...)  |
 
-## 联系我们
+## Contact Us
 
-如果你发现了**BUG**或者有任何疑问、建议，请通过 issue 进行反馈。
+If you find a **BUG** or have any questions or suggestions, please provide feedback through the issue.
