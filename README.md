@@ -4,7 +4,7 @@
 
 ## iPeakoin Concept
 
-The developer API aims to allow enterprises to integrate with iPeakoin systems and easily make it part of their workflow. This API allows developers to use businesses such as [GLOBAL ACCOUNT], [CRYPTO ASSET], and [QUANTUM CARD].
+The developer API aims to allow enterprises to integrate with iPeakoin systems and easily make it part of their workflow. This API allows developers to use businesses such as [Global Account], [Crypto Asset], and [Quantum Card].
 
 ## Project Status
 
