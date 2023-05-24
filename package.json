@@ -1,7 +1,7 @@
 {
   "name": "ipeakoin-node-sdk",
   "version": "0.0.1-beta",
-  "description": "iPeakoin bass api 接口支持",
+  "description": "iPeakoin bass api",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -12,19 +12,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/klover2/ipeakoin-node-sdk.git"
+    "url": "git+https://github.com/ipeakoin/ipeakoin-node-sdk.git"
   },
   "keywords": [
     "iPeakoin",
-    "全球账户",
-    "量子卡"
+    "Global Account",
+    "Quantum Card",
+    "Crypto Asset"
   ],
   "author": "iPeakoin Team",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/klover2/ipeakoin-node-sdk/issues"
+    "url": "https://github.com/ipeakoin/ipeakoin-node-sdk/issues"
   },
-  "homepage": "https://github.com/klover2/ipeakoin-node-sdk#readme",
+  "homepage": "https://github.com/ipeakoin/ipeakoin-node-sdk#readme",
   "files": [
     "dist"
   ],
