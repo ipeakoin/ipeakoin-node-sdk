@@ -13,6 +13,17 @@ export const encryptHmacSHA256 = (params: Record<string, any>, clientSecret: str
     let val = params[key];
     if (val == null) {
       val = '';
+    } else if (typeof val === 'object') {
+      if (!Array.isArray(val)) {
+        const fields = Object.keys(val);
+        fields.sort();
+        const res: Record<string, unknown> = {};
+        for (const field of fields) {
+          res[field] = val[field];
+        }
+        val = res;
+      }
+      val = JSON.stringify(val);
     }
     result.push(`${key}=${val}`);
   }
