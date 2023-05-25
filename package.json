@@ -1,5 +1,5 @@
 {
-  "name": "ipeakoin-node-sdk",
+  "name": "@ipeakoin/ipeakoin-sdk",
   "version": "0.0.1-beta",
   "description": "iPeakoin bass api",
   "main": "dist/index.js",
@@ -63,5 +63,9 @@
     "roots": [
       "<rootDir>/test/"
     ]
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "test"
   }
 }
