@@ -1,5 +1,5 @@
 <p style="text-align: center;">
-  <h1 align="center"><a href="javascript:void(0);">ipeakoin-node-sdk</a></h1>
+  <h1 align="center"><a href="javascript:void(0);">ipeakoin-sdk</a></h1>
 </p>
 
 ## iPeakoin Concept
@@ -18,14 +18,14 @@ It supports auth related interfaces and also provides other interfaces required 
 
 ## Install
 
-The latest version is already available in [npmjs](https://www.npmjs.com/package/ipeakoin-node-sdk)。
+The latest version is already available in [npmjs](https://www.npmjs.com/package/@ipeakoin/ipeakoin-sdk)。
 
-`yarn add ipeakoin-node-sdk` or `npm i ipeakoin-node-sdk`
+`yarn add @ipeakoin/ipeakoin-sdk` or `npm i @ipeakoin/ipeakoin-sdk`
 
 ### Used in JS
 
 ```js
-const Client = require('ipeakoin-node-sdk');
+const Client = require('@ipeakoin/ipeakoin-sdk');
 
 const client = new Client({
   clientId: '<your-client-id>',
@@ -37,7 +37,7 @@ const client = new Client({
 ### Used in TS
 
 ```ts
-import Client from 'ipeakoin-node-sdk';
+import Client from '@ipeakoin/ipeakoin-sdk';
 
 const client = new Client({
   clientId: '<your-client-id>',
