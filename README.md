@@ -48,7 +48,7 @@ const client = new Client({
 
 ### Used in nestjs
 
-请看 [nestjs-ipeakoin-node-sdk](https://github.com/ipeakoin/nestjs-ipeakoin-node-sdk)
+Please take a look [nestjs-ipeakoin-node-sdk](https://github.com/ipeakoin/nestjs-ipeakoin-node-sdk)
 
 ## Start Using
 
