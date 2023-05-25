@@ -130,7 +130,7 @@ export class V1Service extends RequestBaseService {
     return V1Service.globalAccountV1Instance;
   }
   /**
-   * V1 版本 crypto-assets 接口
+   * V1 版本 crypto assets 接口
    */
   public get cryptoAssets(): CryptoAssetsV1Service {
     if (!V1Service.cryptoAssetsV1Instance) {
