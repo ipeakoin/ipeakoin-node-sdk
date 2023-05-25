@@ -67,5 +67,9 @@
   "directories": {
     "lib": "lib",
     "test": "test"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   }
 }
