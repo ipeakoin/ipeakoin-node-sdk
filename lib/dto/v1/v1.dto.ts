@@ -514,11 +514,13 @@ export namespace ClientV1Mange {
           /** 卡类型(储值卡, 额度卡) */
           type: string;
 
+          ipr: boolean;
+
           /** 卡网络(VISA, MASTERCARD) */
           network: string;
 
           /** 发行银行的国家代码。遵循 ISO 3166-1 alpha-2 标准 */
-          issuerCountry: string;
+          issuerCountry?: string;
 
           /** 验证信息 */
           verification: {
@@ -530,6 +532,7 @@ export namespace ClientV1Mange {
           purchaseLimit: {
             day: string;
             single: string;
+            lifetime: string;
           };
         }[];
       };
