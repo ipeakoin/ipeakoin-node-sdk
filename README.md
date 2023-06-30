@@ -67,18 +67,6 @@ const res = await client.refreshAccessToken(refreshToken);
 console.log(res);
 ```
 
-### refresh access token
-
-```ts
-const res = await client.refreshAccessToken(refreshToken);
-console.log(res);
-```
-
-```ts
-const res = await client.refreshAccessToken(refreshToken);
-console.log(res);
-```
-
 ### encrypt Hmac SHA256
 
 ```ts
