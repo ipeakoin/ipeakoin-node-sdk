@@ -1,3 +1,4 @@
+import { ApiException } from './api-exception';
 import { ClientManage } from './lib/dto/dto';
 import { encryptHmacSHA256 } from './lib/utils/crypto';
 import { RequestBaseService } from './request.base.service';

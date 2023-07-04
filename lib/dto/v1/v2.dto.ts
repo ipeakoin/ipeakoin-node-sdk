@@ -86,7 +86,7 @@ export namespace ClientV2Mange {
 
   export interface CardsOutput extends ClientManage.Output {
     content: {
-      code: string;
+      code: number;
       message: string;
       data: {
         data: CardsDataOutput[];
@@ -102,7 +102,7 @@ export namespace ClientV2Mange {
 
   export interface CardInfoOutput extends ClientManage.Output {
     content: {
-      code: string;
+      code: number;
       message: string;
       data: CardsDataOutput;
     };

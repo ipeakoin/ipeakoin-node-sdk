@@ -11,7 +11,7 @@ export namespace ClientV1Mange {
 
   export interface CreateAccountOutput extends ClientManage.Output {
     content: {
-      code: string;
+      code: number;
       message: string;
       data: {
         accountId: string;
@@ -58,7 +58,7 @@ export namespace ClientV1Mange {
 
   export interface AccountsOutput extends ClientManage.Output {
     content: {
-      code: string;
+      code: number;
       message: string;
       data: {
         data: AccountsDataOutput[];
@@ -98,7 +98,7 @@ export namespace ClientV1Mange {
 
   export interface UsersOutput extends ClientManage.Output {
     content: {
-      code: string;
+      code: number;
       message: string;
       data: {
         data: UsersDataOutput[];
@@ -121,7 +121,7 @@ export namespace ClientV1Mange {
 
   export interface UploadFileOutput extends ClientManage.Output {
     content: {
-      code: string;
+      code: number;
       message: string;
       data: string[];
     };
@@ -134,7 +134,7 @@ export namespace ClientV1Mange {
 
   export interface OcrIdCardFaceOutput extends ClientManage.Output {
     content: {
-      code: string;
+      code: number;
       message: string;
       data: {
         /** 地址信息 */
@@ -160,7 +160,7 @@ export namespace ClientV1Mange {
 
   export interface OcrIdCardBackOutput extends ClientManage.Output {
     content: {
-      code: string;
+      code: number;
       message: string;
       data: {
         /** 有效期-到期时间 */
@@ -177,7 +177,7 @@ export namespace ClientV1Mange {
 
   export interface OcrPassportOutput extends ClientManage.Output {
     content: {
-      code: string;
+      code: number;
       message: string;
       data: {
         /** 签发国家代码 */
@@ -294,7 +294,7 @@ export namespace ClientV1Mange {
 
   export interface AccountKycOutput extends ClientManage.Output {
     content: {
-      code: string;
+      code: number;
       message: string;
       data: {
         accountId: string;
@@ -329,7 +329,7 @@ export namespace ClientV1Mange {
 
   export interface BalancesOutput extends ClientManage.Output {
     content: {
-      code: string;
+      code: number;
       message: string;
       data: {
         data: {
@@ -390,7 +390,7 @@ export namespace ClientV1Mange {
 
   export interface CreateTransferOutput extends ClientManage.Output {
     content: {
-      code: string;
+      code: number;
       message: string;
       data: TransferInfoData;
     };
@@ -402,7 +402,7 @@ export namespace ClientV1Mange {
 
   export interface TransferInfoOutput extends ClientManage.Output {
     content: {
-      code: string;
+      code: number;
       message: string;
       data: TransferInfoData;
     };
@@ -427,7 +427,7 @@ export namespace ClientV1Mange {
 
     export interface BudgetsOutput extends ClientManage.Output {
       content: {
-        code: string;
+        code: number;
         message: string;
         data: {
           data: {
@@ -479,7 +479,7 @@ export namespace ClientV1Mange {
 
     export interface BudgetTxsOutput extends ClientManage.Output {
       content: {
-        code: string;
+        code: number;
         message: string;
         data: {
           data: {
@@ -505,7 +505,7 @@ export namespace ClientV1Mange {
 
     export interface CardBinsOutput extends ClientManage.Output {
       content: {
-        code: string;
+        code: number;
         message: string;
         data: {
           /** 卡 bin */
@@ -546,7 +546,7 @@ export namespace ClientV1Mange {
 
     export interface CardsOutput extends ClientManage.Output {
       content: {
-        code: string;
+        code: number;
         message: string;
         data: {
           data: {
@@ -665,7 +665,7 @@ export namespace ClientV1Mange {
 
     export interface CardPrivateInfoOutput extends ClientManage.Output {
       content: {
-        code: string;
+        code: number;
         message: string;
         data: {
           cardNo: string;
@@ -687,7 +687,7 @@ export namespace ClientV1Mange {
 
     export interface CardTxsOutput extends ClientManage.Output {
       content: {
-        code: string;
+        code: number;
         message: string;
         data: {
           data: {
@@ -720,7 +720,7 @@ export namespace ClientV1Mange {
 
     export interface GlobalAccountsOutput extends ClientManage.Output {
       content: {
-        code: string;
+        code: number;
         message: string;
         data: {
           data: {
@@ -760,7 +760,7 @@ export namespace ClientV1Mange {
 
     export interface BanksOutput extends ClientManage.Output {
       content: {
-        code: string;
+        code: number;
         message: string;
         data: {
           data: {
@@ -850,7 +850,7 @@ export namespace ClientV1Mange {
 
     export interface BeneficiariesOutput extends ClientManage.Output {
       content: {
-        code: string;
+        code: number;
         message: string;
         data: {
           data: BeneficiaryInfo[];
@@ -904,7 +904,7 @@ export namespace ClientV1Mange {
 
     export interface CreateBeneficiariesOutput extends ClientManage.Output {
       content: {
-        code: string;
+        code: number;
         message: string;
         data: BeneficiaryInfo[];
       };
@@ -918,7 +918,7 @@ export namespace ClientV1Mange {
 
     export interface RateOutput extends ClientManage.Output {
       content: {
-        code: string;
+        code: number;
         message: string;
         data: {
           pair: string;
@@ -965,7 +965,7 @@ export namespace ClientV1Mange {
 
     export interface PaymentFeeOutput extends ClientManage.Output {
       content: {
-        code: string;
+        code: number;
         message: string;
         data: {
           total: number;
@@ -983,7 +983,7 @@ export namespace ClientV1Mange {
 
     export interface PaymentTxsOutput extends ClientManage.Output {
       content: {
-        code: string;
+        code: number;
         message: string;
         data: {
           data: {
@@ -1019,7 +1019,7 @@ export namespace ClientV1Mange {
 
     export interface BalancesOutput extends ClientManage.Output {
       content: {
-        code: string;
+        code: number;
         message: string;
         data: {
           id: string;
@@ -1042,7 +1042,7 @@ export namespace ClientV1Mange {
 
     export interface AddressesOutput extends ClientManage.Output {
       content: {
-        code: string;
+        code: number;
         message: string;
         data: {
           data: {
@@ -1065,7 +1065,7 @@ export namespace ClientV1Mange {
 
     export interface CreateBlockchainAddressOutput extends ClientManage.Output {
       content: {
-        code: string;
+        code: number;
         message: string;
         data: {
           currency: string;
@@ -1084,7 +1084,7 @@ export namespace ClientV1Mange {
 
     export interface DepositsOutput extends ClientManage.Output {
       content: {
-        code: string;
+        code: number;
         message: string;
         data: {
           data: {
@@ -1119,7 +1119,7 @@ export namespace ClientV1Mange {
 
     export interface WithdrawalOutput extends ClientManage.Output {
       content: {
-        code: string;
+        code: number;
         message: string;
         data: {
           id: string;
@@ -1147,7 +1147,7 @@ export namespace ClientV1Mange {
 
     export interface CurrencyPairOutput extends ClientManage.Output {
       content: {
-        code: string;
+        code: number;
         message: string;
         data: {
           symbol: string;
@@ -1172,7 +1172,7 @@ export namespace ClientV1Mange {
 
     export interface EstimateQuoteOutput extends ClientManage.Output {
       content: {
-        code: string;
+        code: number;
         message: string;
         data: {
           id: string;
@@ -1201,7 +1201,7 @@ export namespace ClientV1Mange {
 
     export interface TradesOutput extends ClientManage.Output {
       content: {
-        code: string;
+        code: number;
         message: string;
         data: {
           data: {
@@ -1238,7 +1238,7 @@ export namespace ClientV1Mange {
 
     export interface TradeOutput extends ClientManage.Output {
       content: {
-        code: string;
+        code: number;
         message: string;
         data: {
           id: string;
@@ -1266,7 +1266,7 @@ export namespace ClientV1Mange {
 
     export interface WiresOutput extends ClientManage.Output {
       content: {
-        code: string;
+        code: number;
         message: string;
         data: {
           data: {
@@ -1307,7 +1307,7 @@ export namespace ClientV1Mange {
 
     export interface WireOutput extends ClientManage.Output {
       content: {
-        code: string;
+        code: number;
         message: string;
         data: {
           id: string;
@@ -1341,7 +1341,7 @@ export namespace ClientV1Mange {
 
     export interface PayoutsOutput extends ClientManage.Output {
       content: {
-        code: string;
+        code: number;
         message: string;
         data: {
           data: {
@@ -1370,7 +1370,7 @@ export namespace ClientV1Mange {
 
     export interface PayoutOutput extends ClientManage.Output {
       content: {
-        code: string;
+        code: number;
         message: string;
         data: {
           id: string;
@@ -1393,7 +1393,7 @@ export namespace ClientV1Mange {
 
     export interface PayoutInfoOutput extends ClientManage.Output {
       content: {
-        code: string;
+        code: number;
         message: string;
         data: {
           id: string;

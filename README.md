@@ -182,10 +182,10 @@ const res = await client.v2.getCards({
 
 #### V2 API List
 
-| name           | func                    |
-| -------------- | ----------------------- |
-| List all cards | client.v2.getCards(...) |
-| Get a card     | client.v2.getCard(...)  |
+| name           | func                         |
+| -------------- | ---------------------------- |
+| List all cards | client.v2.card.getCards(...) |
+| Get a card     | client.v2.card.getCard(...)  |
 
 ## Contact Us
 

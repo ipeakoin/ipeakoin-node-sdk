@@ -1,24 +1,23 @@
-import { ClientV2Mange } from '../../lib/dto/v1/v2.dto';
 import { RequestBaseService } from '../../request.base.service';
+import { CardV2Service } from './card-v2.service';
 
 /**
  * v2 版本接口
  */
 export class V2Service extends RequestBaseService {
+  private static cardV2Instance: CardV2Service;
+
   constructor(clientId: string, clientSecret: string, baseUrl?: string) {
     super(clientId, clientSecret, baseUrl);
   }
 
   /**
-   * List all cards
+   * V1 版本 card 接口
    */
-  public async getCards(input: ClientV2Mange.CardsInput): Promise<ClientV2Mange.CardsOutput> {
-    return this.getRequest('/open-api/v2/cards', input);
-  }
-  /**
-   * Get a card
-   */
-  public async getCard(input: ClientV2Mange.CardInfoInput): Promise<ClientV2Mange.CardInfoOutput> {
-    return this.getRequest(`/open-api/v2/cards/${input.id}`, { accessToken: input.accessToken });
+  public get card(): CardV2Service {
+    if (!V2Service.cardV2Instance) {
+      V2Service.cardV2Instance = new CardV2Service(this.clientId, this.clientSecret, this.baseUrl);
+    }
+    return V2Service.cardV2Instance;
   }
 }

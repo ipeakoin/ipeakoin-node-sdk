@@ -1,4 +1,5 @@
 import superagent from 'superagent';
+import { ApiException } from '../../api-exception';
 import { ClientManage } from '../dto/dto';
 import { ClientV1Mange } from '../dto/v1/v1.dto';
 /**
@@ -88,12 +89,17 @@ export const Request = async (req: superagent.SuperAgentRequest, headers: Record
       content: result.body,
     };
   } catch (error) {
+    throw dealError(error);
+  }
+};
+
+export const dealError = (error: any) => {
+  try {
     const err = JSON.parse(JSON.stringify(error));
-    return {
-      status: err.status as number,
-      errRaw: err,
-      error: err?.response?.text,
-      content: null,
-    };
+    const errorMessage = JSON.parse(err?.response?.text);
+    if (!errorMessage?.message) throw error;
+    throw new ApiException(err?.status as number, err?.response?.text, errorMessage, err?.response?.header);
+  } catch (_error) {
+    throw _error;
   }
 };

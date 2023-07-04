@@ -1,6 +1,7 @@
 import Client from '../index';
 import * as fs from 'fs';
 import { ClientV1Mange } from '../lib/dto/v1/v1.dto';
+import { ApiException } from '../api-exception';
 describe('V1', () => {
   jest.setTimeout(30000);
 
@@ -12,12 +13,19 @@ describe('V1', () => {
   });
 
   it('Create a account', async () => {
-    const res = await client.v1.createAccount({
-      phone: '+8613100200004',
-      name: 'klover',
-      accessToken,
-    });
-    console.log(JSON.stringify(res));
+    try {
+      const res = await client.v1.createAccount({
+        phone: '+8613100200004',
+        name: 'klover',
+        accessToken,
+      });
+      console.log(JSON.stringify(res));
+    } catch (error) {
+      console.log(error);
+      if (error instanceof ApiException) {
+        console.log(error.getErrorMessage);
+      }
+    }
   });
 
   it('List all accounts', async () => {

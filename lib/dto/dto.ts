@@ -22,7 +22,7 @@ export namespace ClientManage {
   /** 统一返回Boolean */
   export interface BooleanOutput extends ClientManage.Output {
     content: {
-      code: string;
+      code: number;
       message: string;
       data: boolean;
     };
@@ -31,7 +31,7 @@ export namespace ClientManage {
   /** 统一返回String */
   export interface StringOutput extends ClientManage.Output {
     content: {
-      code: string;
+      code: number;
       message: string;
       data: string;
     };
