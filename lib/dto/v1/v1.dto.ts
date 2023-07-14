@@ -341,6 +341,7 @@ export namespace ClientV1Mange {
           currency: string;
           status: string;
           createTime: Date;
+          walletType: string;
         }[];
         total: number;
         pageTotal: number;
