@@ -109,6 +109,7 @@ const res = await client.v1.createAccount({
 
 | name                               | func                                                |
 | ---------------------------------- | --------------------------------------------------- |
+| List account fee rates             | client.v1.accountFeeRates(...)                      |
 | Create a account                   | client.v1.createAccount(...)                        |
 | List all accounts                  | client.v1.getAccounts(...)                          |
 | List all users                     | client.v1.getUsers(...)                             |
@@ -139,6 +140,7 @@ const res = await client.v1.createAccount({
 | Quantum card transfer out          | client.v1.card.cardTransferOut(...)                 |
 | Frozen quantum card                | client.v1.card.suspendCard(...)                     |
 | Unfrozen quantum card              | client.v1.card.enableCard(...)                      |
+| Velocity Control                   | client.v1.card.velocityControl(...)                 |
 | Frozen quantum card balance        | client.v1.card.frozenCardBalance(...)               |
 | Unfrozen quantum card balance      | client.v1.card.unfrozenCardBalance(...)             |
 | Get a quantum card private info    | client.v1.card.getCardPrivateInfo(...)              |

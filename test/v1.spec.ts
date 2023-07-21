@@ -6,10 +6,18 @@ describe('V1', () => {
   jest.setTimeout(30000);
 
   let client: Client;
-  let accessToken = 'be41c06e11795655e439cbd4b02c335e770ba27f';
+  let accessToken = 'af42bf2e75328908c9861aa65b073c06d4c5946a';
 
   beforeAll(async () => {
-    client = new Client('ipeakoin1ab59eccfbc78d1b', '93fc39d77ef6a3a7b5f26b83fbbebe81', 'http://127.0.0.1:3000');
+    client = new Client('ipeakoin1ab59eccfbc78d1b', '93fc39d77ef6a3a7b5f26b83fbbebe81', 'https://global.service.test.qbitnetwork.com');
+  });
+
+  it('List account fee rates', async () => {
+    const res = await client.v1.accountFeeRates({
+      accessToken,
+    });
+
+    console.log(res.content);
   });
 
   it('Create a account', async () => {
@@ -319,6 +327,16 @@ describe('V1', () => {
     const res = await client.v1.card.enableCard({
       accessToken,
       cardId: 'e0076ec1-00d3-434d-9733-1ca93c646501',
+    });
+    console.log(JSON.stringify(res));
+    console.log(JSON.stringify(res.content));
+  });
+  it('Velocity Control', async () => {
+    const res = await client.v1.card.velocityControl({
+      accessToken,
+      cardId: '168136b1-ab5d-4896-9efa-d9be30b70255',
+      type: 'DAY',
+      limit: '10',
     });
     console.log(JSON.stringify(res));
     console.log(JSON.stringify(res.content));

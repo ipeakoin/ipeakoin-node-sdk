@@ -16,6 +16,12 @@ export class V1Service extends RequestBaseService {
     super(clientId, clientSecret, baseUrl);
   }
   /**
+   * List account fee rates
+   */
+  public async accountFeeRates(input: ClientV1Mange.AccountFeeRateInput): Promise<ClientV1Mange.AccountFeeRateOutput> {
+    return this.getRequest('/open-api/v1/accounts/fees', input);
+  }
+  /**
    * Create a account
    */
   public async createAccount(input: ClientV1Mange.CreateAccountInput): Promise<ClientV1Mange.CreateAccountOutput> {
@@ -122,6 +128,7 @@ export class V1Service extends RequestBaseService {
   }
   /**
    * V1 版本 global account 接口
+   * @Deprecated
    */
   public get globalAccount(): GlobalAccountV1Service {
     if (!V1Service.globalAccountV1Instance) {

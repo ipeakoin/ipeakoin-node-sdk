@@ -5,6 +5,7 @@ export namespace ClientV2Mange {
     id?: string;
     accountId?: string;
     label?: string;
+    status?: string;
   }
 
   export interface CardsDataOutput {
@@ -57,6 +58,7 @@ export namespace ClientV2Mange {
      * 预算id
      */
     budgetId?: string;
+    createTime: string;
     /**
      * 余额
      */
@@ -82,6 +84,10 @@ export namespace ClientV2Mange {
      * 账单地址
      */
     billingAddress?: ClientManage.Address;
+    velocityControl?: {
+      type: string;
+      limit: string;
+    };
   }
 
   export interface CardsOutput extends ClientManage.Output {

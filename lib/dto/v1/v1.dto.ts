@@ -1,8 +1,21 @@
 import { ClientManage } from '../dto';
 import * as fs from 'fs';
-import { type } from 'os';
 
 export namespace ClientV1Mange {
+  export type AccountFeeRateInput = ClientManage.Input;
+
+  export interface AccountFeeRateOutput extends ClientManage.Output {
+    content: {
+      code: number;
+      message: string;
+      data: {
+        type: string;
+        method: string;
+        rate: string;
+      }[];
+    };
+  }
+
   export interface CreateAccountInput extends ClientManage.Input {
     phone?: string;
     email?: string;
@@ -513,7 +526,9 @@ export namespace ClientV1Mange {
           bin: string;
 
           /** 卡类型(储值卡, 额度卡) */
-          type: string;
+          type: 'PrepaidCard ' | 'BudgetCard';
+
+          cardType: 'Credit' | 'Debit';
 
           ipr: boolean;
 
@@ -564,6 +579,7 @@ export namespace ClientV1Mange {
             balanceId: string;
             budgetId?: string;
             createTime: Date;
+            useType?: string;
           }[];
           total: number;
           pageTotal: number;
@@ -658,6 +674,15 @@ export namespace ClientV1Mange {
     export type SuspendCardOutput = ClientManage.BooleanOutput;
     export type EnableCardInput = SuspendCardInput;
     export type EnableCardOutput = ClientManage.BooleanOutput;
+
+    export interface VelocityControlInput extends ClientManage.Input {
+      cardId: string;
+      accountId?: string;
+      type: string;
+      limit: string;
+    }
+    export type VelocityControlOutput = ClientManage.BooleanOutput;
+
     export type FrozenCardBalanceInput = CardTransferInInput;
     export type FrozenCardBalanceOutput = ClientManage.BooleanOutput;
     export type UnfrozenCardBalanceInput = FrozenCardBalanceInput;
@@ -1050,7 +1075,7 @@ export namespace ClientV1Mange {
             currency: string;
             chain: string;
             address: string;
-            selected: string;
+            selected: boolean;
           }[];
           total: number;
           pageTotal: number;
@@ -1072,7 +1097,7 @@ export namespace ClientV1Mange {
           currency: string;
           chain: string;
           address: string;
-          selected: string;
+          selected: boolean;
         }[];
       };
     }
@@ -1100,6 +1125,7 @@ export namespace ClientV1Mange {
             transactionHash?: string;
             createTime: Date;
             updateTime: Date;
+            to: string;
           }[];
           total: number;
           pageTotal: number;
@@ -1134,12 +1160,34 @@ export namespace ClientV1Mange {
           transactionHash?: string;
           createTime: Date;
           updateTime: Date;
+          to: string;
         };
       };
     }
 
     export type BillsInput = DepositsInput;
-    export type BillsOutput = DepositsOutput;
+    export interface BillsOutput extends ClientManage.Output {
+      content: {
+        code: number;
+        message: string;
+        data: {
+          data: {
+            id: string;
+            accountId: string;
+            balanceId: string;
+            side: string;
+            currency: string;
+            amount: string;
+            fee: string;
+            status: string;
+            createTime: Date;
+            updateTime: Date;
+          }[];
+          total: number;
+          pageTotal: number;
+        };
+      };
+    }
 
     export interface CurrencyPairInput extends ClientManage.Input {
       fromCurrency: string;
@@ -1177,19 +1225,17 @@ export namespace ClientV1Mange {
         message: string;
         data: {
           id: string;
-          accountId: string;
-          symbol: string;
-          status: string;
-          fee: string;
-          feeCurrency: string;
-          rate: string;
+          quoteTime: string;
           baseCurrency: string;
-          quoteCurrency: string;
           baseAmount: string;
+          quoteCurrency: string;
           quoteAmount: string;
+          fee: string;
           side: string;
-          createTime: Date;
-          updateTime: Date;
+          rate: string;
+          rfqAmount: string;
+          rfqCurrency: string;
+          ttlMs: string;
         };
       };
     }
@@ -1354,8 +1400,8 @@ export namespace ClientV1Mange {
             wireId: string;
             status: string;
             externalRef: string;
-            createTime: Date;
-            updateTime: Date;
+            createTime: string;
+            updateTime: string;
           }[];
           total: number;
           pageTotal: number;
@@ -1382,8 +1428,8 @@ export namespace ClientV1Mange {
           wireId: string;
           status: string;
           externalRef: string;
-          createTime: Date;
-          updateTime: Date;
+          createTime: string;
+          updateTime: string;
         }[];
       };
     }
@@ -1421,8 +1467,8 @@ export namespace ClientV1Mange {
             updateTime: Date;
           };
           externalRef: string;
-          createTime: Date;
-          updateTime: Date;
+          createTime: string;
+          updateTime: string;
         }[];
       };
     }

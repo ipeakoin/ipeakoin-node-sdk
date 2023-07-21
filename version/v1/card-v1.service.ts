@@ -92,6 +92,12 @@ export class CardV1Service extends RequestBaseService {
     return this.putRequest('/open-api/v1/cards/enable', input);
   }
   /**
+   * Velocity Control
+   */
+  public async velocityControl(input: ClientV1Mange.card.VelocityControlInput): Promise<ClientV1Mange.card.VelocityControlOutput> {
+    return this.putRequest('/open-api/v1/cards/velocity-control', input);
+  }
+  /**
    * Frozen quantum card balance
    */
   public async frozenCardBalance(input: ClientV1Mange.card.FrozenCardBalanceInput): Promise<ClientV1Mange.card.FrozenCardBalanceOutput> {
