@@ -1,4 +1,4 @@
-import { ClientV2Mange } from '../../lib/dto/v1/v2.dto';
+import { ClientV2Mange } from '../../lib/dto/v2/v2.dto';
 import { RequestBaseService } from '../../request.base.service';
 
 export class CardV2Service extends RequestBaseService {
@@ -17,5 +17,13 @@ export class CardV2Service extends RequestBaseService {
    */
   public async getCard(input: ClientV2Mange.CardInfoInput): Promise<ClientV2Mange.CardInfoOutput> {
     return this.getRequest(`/open-api/v2/cards/${input.id}`, { accessToken: input.accessToken });
+  }
+  /**
+   * Update card
+   */
+  public async updateCard(input: ClientV2Mange.UpdateCardInput): Promise<ClientV2Mange.UpdateCardOutput> {
+    const obj: any = Object.assign({}, { ...input });
+    delete obj.id;
+    return this.putRequest(`/open-api/v2/cards/${input.id}`, obj);
   }
 }

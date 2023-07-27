@@ -6,7 +6,7 @@ describe('V1', () => {
   jest.setTimeout(30000);
 
   let client: Client;
-  let accessToken = 'af42bf2e75328908c9861aa65b073c06d4c5946a';
+  let accessToken = '126b01fb256607b7f3b45713501edf33fb94d7be';
 
   beforeAll(async () => {
     client = new Client('ipeakoin1ab59eccfbc78d1b', '93fc39d77ef6a3a7b5f26b83fbbebe81', 'https://global.service.test.qbitnetwork.com');
@@ -264,7 +264,7 @@ describe('V1', () => {
     const res = await client.v1.card.getCards({
       accessToken,
       limit: 10,
-      id: 'e0076ec1-00d3-434d-9733-1ca93c646501',
+      // id: 'e0076ec1-00d3-434d-9733-1ca93c646501',
     });
     console.log(JSON.stringify(res.content));
   });
@@ -279,12 +279,14 @@ describe('V1', () => {
         country: 'CN',
         postalCode: '330000',
       },
-      bin: '493193',
+      bin: '414631',
       batchCount: 1,
       cost: 10,
       firstName: 'KLOVER',
       lastName: 'W',
       useType: 'test',
+      phone: '13112340001',
+      phoneCode: '86',
     });
     console.log(JSON.stringify(res));
   });

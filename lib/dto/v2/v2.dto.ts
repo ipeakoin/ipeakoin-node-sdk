@@ -113,4 +113,13 @@ export namespace ClientV2Mange {
       data: CardsDataOutput;
     };
   }
+
+  export interface UpdateCardInput extends ClientManage.Input {
+    id: string;
+    accountId?: string;
+    phoneCode: string;
+    phone: string;
+  }
+
+  export type UpdateCardOutput = ClientManage.BooleanOutput;
 }

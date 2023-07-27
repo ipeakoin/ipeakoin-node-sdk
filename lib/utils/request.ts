@@ -96,6 +96,7 @@ export const Request = async (req: superagent.SuperAgentRequest, headers: Record
 export const dealError = (error: any) => {
   try {
     const err = JSON.parse(JSON.stringify(error));
+    if (!err?.response?.text) throw error;
     const errorMessage = JSON.parse(err?.response?.text);
     if (!errorMessage?.message) throw error;
     throw new ApiException(err?.status as number, err?.response?.text, errorMessage, err?.response?.header);
