@@ -184,11 +184,14 @@ const res = await client.v2.getCards({
 
 #### V2 API List
 
-| name           | func                            |
-| -------------- | ------------------------------- |
-| List all cards | client.v2.card.getCards(...)    |
-| Get a card     | client.v2.card.getCard(...)     |
-| Update card    | service.v2.card.updateCard(...) |
+| name                                  | func                                                 |
+| ------------------------------------- | ---------------------------------------------------- |
+| List all cards                        | client.v2.card.getCards(...)                         |
+| Get a card                            | client.v2.card.getCard(...)                          |
+| Update card                           | service.v2.card.updateCard(...)                      |
+| Delete account                        | client.v2.deleteAccount(...)                         |
+| List all quantum account transactions | client.v2.quantumAccount.getAccountTransactions(...) |
+| Get a quantum account transaction     | client.v2.quantumAccount.getAccountTransaction(...)  |
 
 ## Contact Us
 

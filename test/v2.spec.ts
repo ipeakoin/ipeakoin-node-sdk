@@ -30,4 +30,25 @@ describe('V1', () => {
     });
     console.log(res);
   });
+  it('Delete account', async () => {
+    const res = await client.v2.deleteAccount({
+      accessToken,
+      accountId: '73beb830-7cbc-4fbc-919f-906f352981ed',
+    });
+    console.log(res);
+  });
+  it('List all quantum account transactions', async () => {
+    const res = await client.v2.quantumAccount.getAccountTransactions({
+      accessToken,
+      limit: 10,
+    });
+    console.log(res.content.data);
+  });
+  it('Get a quantum account transaction', async () => {
+    const res = await client.v2.quantumAccount.getAccountTransaction({
+      accessToken,
+      id: '55cf4f84-c558-470c-b78a-25d84e5d80f4',
+    });
+    console.log(res);
+  });
 });

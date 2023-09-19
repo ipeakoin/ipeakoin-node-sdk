@@ -1,6 +1,6 @@
 {
   "name": "@ipeakoin/ipeakoin-sdk",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "iPeakoin bass api",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

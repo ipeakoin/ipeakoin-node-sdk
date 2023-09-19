@@ -9,7 +9,7 @@ describe('V1', () => {
   let accessToken = '126b01fb256607b7f3b45713501edf33fb94d7be';
 
   beforeAll(async () => {
-    client = new Client('ipeakoin1ab59eccfbc78d1b', '93fc39d77ef6a3a7b5f26b83fbbebe81', 'https://global.service.test.qbitnetwork.com');
+    client = new Client('ipeakoin1ab59eccfbc78d1b', '93fc39d77ef6a3a7b5f26b83fbbebe81', 'http://127.0.0.1:3000');
   });
 
   it('List account fee rates', async () => {
@@ -23,7 +23,7 @@ describe('V1', () => {
   it('Create a account', async () => {
     try {
       const res = await client.v1.createAccount({
-        phone: '+8613100200004',
+        phone: '+8613200200010',
         name: 'klover',
         accessToken,
       });
@@ -279,7 +279,7 @@ describe('V1', () => {
         country: 'CN',
         postalCode: '330000',
       },
-      bin: '414631',
+      bin: '493193',
       batchCount: 1,
       cost: 10,
       firstName: 'KLOVER',

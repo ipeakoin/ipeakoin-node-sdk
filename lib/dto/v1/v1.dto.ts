@@ -365,6 +365,7 @@ export namespace ClientV1Mange {
   export interface CreateCryptoAssetsSource {
     type: 'crypto_assets';
     currency: string;
+    id?: string;
   }
   export interface CreateQuantumAccountSource {
     type: 'quantum_account';

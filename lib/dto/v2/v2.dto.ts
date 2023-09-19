@@ -122,4 +122,51 @@ export namespace ClientV2Mange {
   }
 
   export type UpdateCardOutput = ClientManage.BooleanOutput;
+
+  export interface AccountTransactionsInput extends ClientManage.Input, ClientManage.ListInput {
+    id?: string;
+    accountId?: string;
+    status?: string;
+  }
+
+  export interface AccountTransactionInput extends ClientManage.Input {
+    id: string;
+  }
+
+  export interface AccountTransactionDetailOutput {
+    id: string;
+    accountId: string;
+    currency: string;
+    amount: string;
+    fee: string;
+    type: 'TransferIn' | 'TransferOut';
+    status: 'Pending' | 'Closed' | 'Fail';
+    createTime: Date;
+  }
+
+  export interface AccountTransactionsOutput extends ClientManage.Output {
+    content: {
+      code: number;
+      message: string;
+      data: {
+        data: AccountTransactionDetailOutput[];
+        total: number;
+        pageTotal: number;
+      };
+    };
+  }
+
+  export interface AccountTransactionOutput extends ClientManage.Output {
+    content: {
+      code: number;
+      message: string;
+      data: AccountTransactionDetailOutput;
+    };
+  }
+
+  export interface DeleteAccountInput extends ClientManage.Input {
+    accountId: string;
+  }
+
+  export type DeleteAccountOutput = ClientManage.BooleanOutput;
 }
