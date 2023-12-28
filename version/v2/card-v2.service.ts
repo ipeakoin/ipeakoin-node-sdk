@@ -20,9 +20,10 @@ export class CardV2Service extends RequestBaseService {
   }
   /**
    * Update card
+   * @deprecated
    */
   public async updateCard(input: ClientV2Mange.UpdateCardInput): Promise<ClientV2Mange.UpdateCardOutput> {
-    const obj: any = Object.assign({}, { ...input });
+    const obj: any = { ...input };
     delete obj.id;
     return this.putRequest(`/open-api/v2/cards/${input.id}`, obj);
   }

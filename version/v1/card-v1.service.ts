@@ -62,6 +62,14 @@ export class CardV1Service extends RequestBaseService {
     return this.postRequest('/open-api/v1/cards', input);
   }
   /**
+   * Create Quantum card parameters check
+   */
+  public async createCardCheck(
+    input: ClientV1Mange.card.CreatePrepaidCardCardInput | ClientV1Mange.card.CreateBudgetCardCardInput,
+  ): Promise<ClientV1Mange.card.CreateCardCheckOutput> {
+    return this.postRequest('/open-api/v1/cards/create/check', input);
+  }
+  /**
    * Delete quantum card
    */
   public async deleteCard(input: ClientV1Mange.card.DeleteCardInput): Promise<ClientV1Mange.card.DeleteCardOutput> {

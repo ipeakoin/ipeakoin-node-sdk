@@ -6,7 +6,7 @@ describe('V1', () => {
   jest.setTimeout(30000);
 
   let client: Client;
-  let accessToken = '126b01fb256607b7f3b45713501edf33fb94d7be';
+  let accessToken = '28a20f7eb61fd00da73fa3595f5cb8a553cb4d7c';
 
   beforeAll(async () => {
     client = new Client('ipeakoin1ab59eccfbc78d1b', '93fc39d77ef6a3a7b5f26b83fbbebe81', 'http://127.0.0.1:3000');
@@ -290,6 +290,31 @@ describe('V1', () => {
     });
     console.log(JSON.stringify(res));
   });
+
+  it('Create Quantum card parameters check', async () => {
+    const res = await client.v1.card.createCardCheck({
+      accessToken,
+      type: 'PrepaidCard',
+      cardAddress: {
+        addressLine1: '39.No',
+        city: 'hangzhou',
+        state: 'hangzhou',
+        country: 'CN',
+        postalCode: '330000',
+      },
+      bin: '493193',
+      batchCount: 1,
+      cost: 10,
+      firstName: 'KLOVER',
+      lastName: 'W',
+      useType: 'test',
+      phone: '13112340001',
+      phoneCode: '86',
+      email: '11111',
+    });
+    console.log(JSON.stringify(res.content.data));
+  });
+
   it('Delete quantum card', async () => {
     const res = await client.v1.card.deleteCard({
       accessToken,
@@ -380,125 +405,7 @@ describe('V1', () => {
     console.log(JSON.stringify(res));
     console.log(JSON.stringify(res.content));
   });
-  it('List all global accounts', async () => {
-    const res = await client.v1.globalAccount.getGlobalAccounts({
-      accessToken,
-      accountId: 'd37deed7-f0e7-4635-a43a-781af0cb59f0',
-      limit: 10,
-    });
-    console.log(JSON.stringify(res));
-    console.log(JSON.stringify(res.content));
-  });
-  it('Create a global account', async () => {
-    const res = await client.v1.globalAccount.createGlobalAccount({
-      accessToken,
-      accountId: 'd37deed7-f0e7-4635-a43a-781af0cb59f0',
-      currency: 'USD',
-      purpose: 'test',
-    });
-    console.log(JSON.stringify(res));
-    console.log(JSON.stringify(res.content));
-  });
-  it('List all bank accounts', async () => {
-    const res = await client.v1.globalAccount.getBanks({
-      accessToken,
-      accountId: 'd37deed7-f0e7-4635-a43a-781af0cb59f0',
-      globalSubAccountId: '279df0ee-990c-4948-880a-17c4b7b41c64',
-      limit: 10,
-    });
-    console.log(JSON.stringify(res));
-    console.log(JSON.stringify(res.content));
-  });
-  it('List all beneficiaries', async () => {
-    const res = await client.v1.globalAccount.getBeneficiaries({
-      accessToken,
-      accountId: 'd37deed7-f0e7-4635-a43a-781af0cb59f0',
-      globalSubAccountId: '279df0ee-990c-4948-880a-17c4b7b41c64',
-      limit: 10,
-    });
-    console.log(JSON.stringify(res));
-    console.log(JSON.stringify(res.content));
-  });
-  it('Create a beneficiary', async () => {
-    const res = await client.v1.globalAccount.createBeneficiaries({
-      accessToken,
-      accountId: 'd37deed7-f0e7-4635-a43a-781af0cb59f0',
-      firstName: 'klover',
-      lastName: '2',
-      currency: 'CNY',
-      relationship: ClientV1Mange.globalAccount.RelationshipEnum.AGENCY_RELATIONSHIP,
-      receiverAddress: { addressLine1: '北京', addressLine2: '', city: '北京市', country: 'CN', postalCode: '000000', state: '北京' },
-      accountNumber: '1655783758',
-      bankName: '07750000',
-      bankAddress: { addressLine1: '北京', addressLine2: '', city: '北京市', country: 'CN', postalCode: '', state: '北京' },
-      bankBranchName: '北京支行',
-      certificateNo: '123456786543',
-      routingNumber: '',
-      type: 'Business',
-    });
-    console.log(JSON.stringify(res));
-    console.log(JSON.stringify(res.content));
-  });
-  it('Get a exchange rate', async () => {
-    const res = await client.v1.globalAccount.getRate({
-      accessToken,
-      accountId: 'd37deed7-f0e7-4635-a43a-781af0cb59f0',
-      sellCurrency: 'USD',
-      buyCurrency: 'CNY',
-    });
-    console.log(JSON.stringify(res));
-    console.log(JSON.stringify(res.content));
-  });
-  it('Create a payment', async () => {
-    const res = await client.v1.globalAccount.payment({
-      accessToken,
-      accountId: 'd37deed7-f0e7-4635-a43a-781af0cb59f0',
-      balanceId: '2f69c1a1-22ca-456e-872d-d92e5dc138b9',
-      receiverId: 'e24b6e3e-6637-4e22-be8c-24747bab4240',
-      amount: 200,
-      clientTransactionId: '14314dfgsfgs',
-      reference: 'test',
-    });
-    console.log(JSON.stringify(res));
-    console.log(JSON.stringify(res.content));
-  });
-  it('Batch create payments', async () => {
-    const res = await client.v1.globalAccount.batchPayment({
-      accessToken,
-      paymentList: [
-        {
-          accountId: 'd37deed7-f0e7-4635-a43a-781af0cb59f0',
-          balanceId: '2f69c1a1-22ca-456e-872d-d92e5dc138b9',
-          receiverId: 'e24b6e3e-6637-4e22-be8c-24747bab4240',
-          amount: 200,
-          clientTransactionId: '14314dfgsfgs',
-          reference: 'test',
-        },
-      ],
-    });
-    console.log(JSON.stringify(res));
-    console.log(JSON.stringify(res.content));
-  });
-  it('Get a payment fee', async () => {
-    const res = await client.v1.globalAccount.getPaymentFee({
-      accessToken,
-      accountId: 'd37deed7-f0e7-4635-a43a-781af0cb59f0',
-      balanceId: '2f69c1a1-22ca-456e-872d-d92e5dc138b9',
-      receiverId: 'e24b6e3e-6637-4e22-be8c-24747bab4240',
-      amount: 200,
-    });
-    console.log(JSON.stringify(res));
-    console.log(JSON.stringify(res.content));
-  });
-  it('List all payment transactions', async () => {
-    const res = await client.v1.globalAccount.getPaymentTransactions({
-      accessToken,
-      accountId: 'd37deed7-f0e7-4635-a43a-781af0cb59f0',
-      limit: 10,
-    });
-    console.log(JSON.stringify(res));
-    console.log(JSON.stringify(res.content));
-  });
+
   it('List all wallet balances', async () => {
     const res = await client.v1.cryptoAssets.getBalances({
       accessToken,

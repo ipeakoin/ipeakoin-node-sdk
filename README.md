@@ -107,71 +107,72 @@ const res = await client.v1.createAccount({
 
 #### Vl API List
 
-| name                               | func                                                |
-| ---------------------------------- | --------------------------------------------------- |
-| List account fee rates             | client.v1.accountFeeRates(...)                      |
-| Create a account                   | client.v1.createAccount(...)                        |
-| List all accounts                  | client.v1.getAccounts(...)                          |
-| List all users                     | client.v1.getUsers(...)                             |
-| Upload file                        | client.v1.uploadFile(...)                           |
-| OCR (ID card - Face)               | client.v1.ocrIdCardFace(...)                        |
-| OCR (ID card - Back)               | client.v1.ocrIdCardBack(...)                        |
-| OCR (Passport)                     | client.v1.ocrPassport(...)                          |
-| Submit account KYC                 | client.v1.submitAccountKyc(...)                     |
-| Reset account KYC                  | client.v1.resetAccountKyc(...)                      |
-| Get a face authentication url      | client.v1.getFaceAuthUrl(...)                       |
-| Face authentication                | client.v1.faceAuth(...)                             |
-| Get a account KYC                  | client.v1.getAccountKyc(...)                        |
-| List all balances                  | client.v1.getBalances(...)                          |
-| Create a transfer                  | client.v1.createTransfer(...)                       |
-| Get a transfer                     | client.v1.getTransfer(...)                          |
-| Trigger webhook                    | client.v1.triggerWebhook(...)                       |
-| List all budgets                   | client.v1.card.getBudgets(...)                      |
-| Update a budget                    | client.v1.card.updateBudget(...)                    |
-| Create a budget                    | client.v1.card.createBudget(...)                    |
-| Increase the budget balance        | client.v1.card.increaseBudgetBalance(...)           |
-| Decrease the budget balance        | client.v1.card.decreaseBudgetBalance(...)           |
-| List all budget transactions       | client.v1.card.getBudgetTransactions(...)           |
-| List all available card BIN        | client.v1.card.getCardBins(...)                     |
-| List all quantum cards             | client.v1.card.getCards(...)                        |
-| Create a quantum card              | client.v1.card.createCard(...)                      |
-| Delete quantum card                | client.v1.card.deleteCard(...)                      |
-| Quantum card transfer in           | client.v1.card.cardTransferIn(...)                  |
-| Quantum card transfer out          | client.v1.card.cardTransferOut(...)                 |
-| Frozen quantum card                | client.v1.card.suspendCard(...)                     |
-| Unfrozen quantum card              | client.v1.card.enableCard(...)                      |
-| Velocity Control                   | client.v1.card.velocityControl(...)                 |
-| Frozen quantum card balance        | client.v1.card.frozenCardBalance(...)               |
-| Unfrozen quantum card balance      | client.v1.card.unfrozenCardBalance(...)             |
-| Get a quantum card private info    | client.v1.card.getCardPrivateInfo(...)              |
-| List all quantum card transactions | client.v1.card.getCardTransactions(...)             |
-| List all global accounts           | client.v1.globalAccount.getGlobalAccounts(...)      |
-| Create a global account            | client.v1.globalAccount.createGlobalAccount(...)    |
-| List all bank accounts             | client.v1.globalAccount.getBanks(...)               |
-| List all beneficiaries             | client.v1.globalAccount.getBeneficiaries(...)       |
-| Create a beneficiary               | client.v1.globalAccount.createBeneficiaries(...)    |
-| Get a exchange rate                | client.v1.globalAccount.getRate(...)                |
-| Create a payment                   | client.v1.globalAccount.payment(...)                |
-| Batch create payments              | client.v1.globalAccount.batchPayment(...)           |
-| Get a payment fee                  | client.v1.globalAccount.getPaymentFee(...)          |
-| List all payment transactions      | client.v1.globalAccount.getPaymentTransactions(...) |
-| List all wallet balances           | client.v1.cryptoAssets.getBalances(...)             |
-| List all addresses                 | client.v1.cryptoAssets.getAddresses(...)            |
-| Create a blockchain address        | client.v1.cryptoAssets.createBlockchainAddress(...) |
-| List all deposit history           | client.v1.cryptoAssets.getDeposits(...)             |
-| List all withdrawal history        | client.v1.cryptoAssets.getWithdrawals(...)          |
-| Withdraw coin                      | client.v1.cryptoAssets.withdrawal(...)              |
-| List all bills                     | client.v1.cryptoAssets.getBills(...)                |
-| Get a trade currency pair          | client.v1.cryptoAssets.getCurrencyPair(...)         |
-| Get a estimate quote               | client.v1.cryptoAssets.estimateQuote(...)           |
-| List all trades                    | client.v1.cryptoAssets.getTrades(...)               |
-| Create a trade                     | client.v1.cryptoAssets.trade(...)                   |
-| List all Wire bank accounts        | client.v1.cryptoAssets.getWires(...)                |
-| Create a wire bank account         | client.v1.cryptoAssets.wire(...)                    |
-| Delete a Wire bank account         | client.v1.cryptoAssets.deleteWire(...)              |
-| List all payouts                   | client.v1.cryptoAssets.getPayouts(...)              |
-| Create a payout                    | client.v1.cryptoAssets.payout(...)                  |
-| Get a payout                       | client.v1.cryptoAssets.getPayout(...)               |
+| name                                 | func                                                |
+| ------------------------------------ | --------------------------------------------------- |
+| List account fee rates               | client.v1.accountFeeRates(...)                      |
+| Create a account                     | client.v1.createAccount(...)                        |
+| List all accounts                    | client.v1.getAccounts(...)                          |
+| List all users                       | client.v1.getUsers(...)                             |
+| Upload file                          | client.v1.uploadFile(...)                           |
+| OCR (ID card - Face)                 | client.v1.ocrIdCardFace(...)                        |
+| OCR (ID card - Back)                 | client.v1.ocrIdCardBack(...)                        |
+| OCR (Passport)                       | client.v1.ocrPassport(...)                          |
+| Submit account KYC                   | client.v1.submitAccountKyc(...)                     |
+| Reset account KYC                    | client.v1.resetAccountKyc(...)                      |
+| Get a face authentication url        | client.v1.getFaceAuthUrl(...)                       |
+| Face authentication                  | client.v1.faceAuth(...)                             |
+| Get a account KYC                    | client.v1.getAccountKyc(...)                        |
+| List all balances                    | client.v1.getBalances(...)                          |
+| Create a transfer                    | client.v1.createTransfer(...)                       |
+| Get a transfer                       | client.v1.getTransfer(...)                          |
+| Trigger webhook                      | client.v1.triggerWebhook(...)                       |
+| List all budgets                     | client.v1.card.getBudgets(...)                      |
+| Update a budget                      | client.v1.card.updateBudget(...)                    |
+| Create a budget                      | client.v1.card.createBudget(...)                    |
+| Increase the budget balance          | client.v1.card.increaseBudgetBalance(...)           |
+| Decrease the budget balance          | client.v1.card.decreaseBudgetBalance(...)           |
+| List all budget transactions         | client.v1.card.getBudgetTransactions(...)           |
+| List all available card BIN          | client.v1.card.getCardBins(...)                     |
+| List all quantum cards               | client.v1.card.getCards(...)                        |
+| Create a quantum card                | client.v1.card.createCard(...)                      |
+| Create Quantum card parameters check | client.v1.card.createCardCheck(...)                 |
+| Delete quantum card                  | client.v1.card.deleteCard(...)                      |
+| Quantum card transfer in             | client.v1.card.cardTransferIn(...)                  |
+| Quantum card transfer out            | client.v1.card.cardTransferOut(...)                 |
+| Frozen quantum card                  | client.v1.card.suspendCard(...)                     |
+| Unfrozen quantum card                | client.v1.card.enableCard(...)                      |
+| Velocity Control                     | client.v1.card.velocityControl(...)                 |
+| Frozen quantum card balance          | client.v1.card.frozenCardBalance(...)               |
+| Unfrozen quantum card balance        | client.v1.card.unfrozenCardBalance(...)             |
+| Get a quantum card private info      | client.v1.card.getCardPrivateInfo(...)              |
+| List all quantum card transactions   | client.v1.card.getCardTransactions(...)             |
+| List all global accounts             | client.v1.globalAccount.getGlobalAccounts(...)      |
+| Create a global account              | client.v1.globalAccount.createGlobalAccount(...)    |
+| List all bank accounts               | client.v1.globalAccount.getBanks(...)               |
+| List all beneficiaries               | client.v1.globalAccount.getBeneficiaries(...)       |
+| Create a beneficiary                 | client.v1.globalAccount.createBeneficiaries(...)    |
+| Get a exchange rate                  | client.v1.globalAccount.getRate(...)                |
+| Create a payment                     | client.v1.globalAccount.payment(...)                |
+| Batch create payments                | client.v1.globalAccount.batchPayment(...)           |
+| Get a payment fee                    | client.v1.globalAccount.getPaymentFee(...)          |
+| List all payment transactions        | client.v1.globalAccount.getPaymentTransactions(...) |
+| List all wallet balances             | client.v1.cryptoAssets.getBalances(...)             |
+| List all addresses                   | client.v1.cryptoAssets.getAddresses(...)            |
+| Create a blockchain address          | client.v1.cryptoAssets.createBlockchainAddress(...) |
+| List all deposit history             | client.v1.cryptoAssets.getDeposits(...)             |
+| List all withdrawal history          | client.v1.cryptoAssets.getWithdrawals(...)          |
+| Withdraw coin                        | client.v1.cryptoAssets.withdrawal(...)              |
+| List all bills                       | client.v1.cryptoAssets.getBills(...)                |
+| Get a trade currency pair            | client.v1.cryptoAssets.getCurrencyPair(...)         |
+| Get a estimate quote                 | client.v1.cryptoAssets.estimateQuote(...)           |
+| List all trades                      | client.v1.cryptoAssets.getTrades(...)               |
+| Create a trade                       | client.v1.cryptoAssets.trade(...)                   |
+| List all Wire bank accounts          | client.v1.cryptoAssets.getWires(...)                |
+| Create a wire bank account           | client.v1.cryptoAssets.wire(...)                    |
+| Delete a Wire bank account           | client.v1.cryptoAssets.deleteWire(...)              |
+| List all payouts                     | client.v1.cryptoAssets.getPayouts(...)              |
+| Create a payout                      | client.v1.cryptoAssets.payout(...)                  |
+| Get a payout                         | client.v1.cryptoAssets.getPayout(...)               |
 
 ### V2 Interface Example
 
@@ -190,6 +191,7 @@ const res = await client.v2.getCards({
 | Get a card                            | client.v2.card.getCard(...)                          |
 | Update card                           | service.v2.card.updateCard(...)                      |
 | Delete account                        | client.v2.deleteAccount(...)                         |
+| Update a account                      | client.v2.updateAccount(...)                         |
 | List all quantum account transactions | client.v2.quantumAccount.getAccountTransactions(...) |
 | Get a quantum account transaction     | client.v2.quantumAccount.getAccountTransaction(...)  |
 

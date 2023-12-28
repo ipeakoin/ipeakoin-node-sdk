@@ -2,14 +2,12 @@ import { ClientV1Mange } from '../../lib/dto/v1/v1.dto';
 import { RequestBaseService } from '../../request.base.service';
 import { CardV1Service } from './card-v1.service';
 import { CryptoAssetsV1Service } from './crypto-assets-v1.service';
-import { GlobalAccountV1Service } from './global-account-v1.service';
 
 /**
  * v1 版本接口
  */
 export class V1Service extends RequestBaseService {
   private static cardV1Instance: CardV1Service;
-  private static globalAccountV1Instance: GlobalAccountV1Service;
   private static cryptoAssetsV1Instance: CryptoAssetsV1Service;
 
   constructor(clientId: string, clientSecret: string, baseUrl?: string) {
@@ -125,16 +123,6 @@ export class V1Service extends RequestBaseService {
       V1Service.cardV1Instance = new CardV1Service(this.clientId, this.clientSecret, this.baseUrl);
     }
     return V1Service.cardV1Instance;
-  }
-  /**
-   * V1 版本 global account 接口
-   * @Deprecated
-   */
-  public get globalAccount(): GlobalAccountV1Service {
-    if (!V1Service.globalAccountV1Instance) {
-      V1Service.globalAccountV1Instance = new GlobalAccountV1Service(this.clientId, this.clientSecret, this.baseUrl);
-    }
-    return V1Service.globalAccountV1Instance;
   }
   /**
    * V1 版本 crypto assets 接口

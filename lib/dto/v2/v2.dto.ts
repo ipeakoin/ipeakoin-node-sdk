@@ -165,7 +165,12 @@ export namespace ClientV2Mange {
   }
 
   export interface DeleteAccountInput extends ClientManage.Input {
-    accountId: string;
+    id: string;
+  }
+
+  export interface UpdateAccountInput extends ClientManage.Input {
+    id: string;
+    email: string;
   }
 
   export type DeleteAccountOutput = ClientManage.BooleanOutput;

@@ -1,4 +1,5 @@
 import { ClientV2Mange } from '../../lib/dto/v2/v2.dto';
+import { ClientManage } from '../../lib/dto/dto';
 import { RequestBaseService } from '../../request.base.service';
 import { CardV2Service } from './card-v2.service';
 import { QuantumAccountV2Service } from './quantum-account.service';
@@ -18,7 +19,14 @@ export class V2Service extends RequestBaseService {
    * Delete account
    */
   public async deleteAccount(input: ClientV2Mange.DeleteAccountInput): Promise<ClientV2Mange.DeleteAccountOutput> {
-    return this.deleteRequest(`/open-api/v2/accounts/${input.accountId}`, { accessToken: input.accessToken });
+    return this.deleteRequest(`/open-api/v2/accounts/${input.id}`, { accessToken: input.accessToken });
+  }
+
+  /**
+   * Update a account
+   */
+  public async updateAccount(input: ClientV2Mange.UpdateAccountInput): Promise<ClientManage.BooleanOutput> {
+    return this.putRequest(`/open-api/v2/accounts/${input.id}`, { accessToken: input.accessToken, email: input.email });
   }
 
   /**

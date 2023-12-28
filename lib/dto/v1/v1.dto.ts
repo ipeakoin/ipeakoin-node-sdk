@@ -652,6 +652,17 @@ export namespace ClientV1Mange {
 
     export type CreateCardOutput = ClientManage.BooleanOutput;
 
+    export interface CreateCardCheckOutput extends ClientManage.Output {
+      content: {
+        code: number;
+        message: string;
+        data: {
+          key: string;
+          reason: string;
+        }[];
+      };
+    }
+
     export interface DeleteCardInput extends ClientManage.Input {
       cardId: string;
     }
